@@ -4,8 +4,8 @@ const Reviews = () => {
   return (
     <>
       <section>
-        <p className="mt-20 text-4xl font-medium leading-10 text-center text-gray-900">
-          Amazing
+        <p className="mt-20 text-4xl font-light leading-10 text-center text-gray-900">
+          Read Amazing
           <span className="relative mx-2 text-green-600 whitespace-nowrap">
             Reviews{" "}
             <svg
@@ -20,19 +20,63 @@ const Reviews = () => {
           from users
         </p>
       </section>
-      <section className="flex flex-col mt-7">
-        <article className="bg-rose-200 w-full p-6 rounded">
-          <h3 className="text-3xl mb-5">Emmanuel Kumah</h3>
-          <p>
+      <section className="flex flex-col gap-8 mt-12 lg:flex-row ">
+        <article className="bg-slate-100  shadow-lg shadow-slate-500/50 hover:shadow-orange-50 w-full p-6 rounded-lg">
+          <p className="text-sm font-light">
             Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nobis
             maiores sequi architecto autem, illum doloremque quae cumque atque
             ab in quos porro impedit quas unde consequatur velit laborum nam!
             Velit.
           </p>
+          <div className="flex flex-col">
+            <p className="mt-10">Emmanuel Kumah</p>
+            <p className="font-poppins text-green-500 font-w">
+              Technical Writer
+            </p>
+          </div>
         </article>
-        <article>Second article</article>
-        <article>third article</article>
-        <article>fourth article</article>
+        <article className="bg-slate-100  shadow-lg shadow-slate-500/50 hover:shadow-orange-50 w-full p-6 rounded-lg">
+          <p className="text-sm font-light">
+            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nobis
+            maiores sequi architecto autem, illum doloremque quae cumque atque
+            ab in quos porro impedit quas unde consequatur velit laborum nam!
+            Velit.
+          </p>
+          <div className="flex flex-col">
+            <p className="mt-10">Emmanuel Kumah</p>
+            <p className="font-poppins text-green-500 font-w">
+              Technical Writer
+            </p>
+          </div>
+        </article>
+        <article className="bg-slate-100  shadow-lg shadow-slate-500/50 hover:shadow-orange-50 w-full p-6 rounded-lg">
+          <p className="text-sm font-light">
+            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nobis
+            maiores sequi architecto autem, illum doloremque quae cumque atque
+            ab in quos porro impedit quas unde consequatur velit laborum nam!
+            Velit.
+          </p>
+          <div className="flex flex-col">
+            <p className="mt-10">Emmanuel Kumah</p>
+            <p className="font-poppins text-green-500 font-w">
+              Technical Writer
+            </p>
+          </div>
+        </article>
+        <article className="bg-slate-100  shadow-lg shadow-slate-500/50 hover:shadow-orange-50 w-full p-6 rounded-lg">
+          <p className="text-sm font-light">
+            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nobis
+            maiores sequi architecto autem, illum doloremque quae cumque atque
+            ab in quos porro impedit quas unde consequatur velit laborum nam!
+            Velit.
+          </p>
+          <div className="flex flex-col">
+            <p className="mt-10">Emmanuel Kumah</p>
+            <p className="font-poppins text-green-500 font-w">
+              Technical Writer
+            </p>
+          </div>
+        </article>
       </section>
     </>
   );

@@ -1,21 +1,21 @@
-import "./App.css";
 import Hero from "./components/Hero";
+import Layout from "./components/Layout/Layout";
 import Reviews from "./components/Reviews";
-import TopicInput from "./components/TopicInput";
+import "./App.css";
 
 function App() {
   return (
     <>
-      <main>
-        <div className="main">
-          <div className="gradient" />
-        </div>
-        <div className="app">
+      <div className="main">
+        <div className="gradient" />
+      </div>
+
+      <div className="app">
+        <Layout>
           <Hero />
-          <TopicInput />
           <Reviews />
-        </div>
-      </main>
+        </Layout>
+      </div>
     </>
   );
 }

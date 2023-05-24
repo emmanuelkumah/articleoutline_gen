@@ -1,17 +1,16 @@
 import React from "react";
-import NavBar from "./NavBar";
+import NavBar from "./Layout/NavBar";
 
 const Hero = () => {
   return (
     <>
       <header className="w-100 flex flex-col justify-center items-center">
-        <NavBar />
-        <section>
-          <h1 className="head_text">Outliner.ai</h1>
-          <h2 className="mt-20 text-3xl font-medium leading-10 text-center text-gray-900">
+        <h1 className="head_text orange_gradient">Outliner.ai</h1>
+        <section className="font-satoshi">
+          <h2 className="mt-10 text-3xl font-medium leading-10 text-center text-gray-900">
             Generate
             <span className="relative mx-2 text-green-600 whitespace-nowrap">
-              articles outline
+              outline of articles
               <svg
                 aria-hidden="true"
                 viewBox="0 0 418 42"
@@ -27,6 +26,14 @@ const Hero = () => {
             Struggling with writer's block? Easily create blog posts from
             scratch with our free outline generator
           </p>
+          <div className="flex flex-col items-center ">
+            <button
+              type="button"
+              className="bg-red-500 hover:bg-opacity-80 w-full bg-opacity-90 flex-1 p-2 rounded mt-10 text-white text-lg capitalize  md:w-3/6"
+            >
+              Get Started
+            </button>
+          </div>
         </section>
       </header>
     </>
