@@ -1,7 +1,7 @@
 import React from "react";
 
 const ArticleDesc = () => {
-  return <div>ArticleDesc</div>;
+  return <>Test</>;
 };
 
 export default ArticleDesc;

@@ -1,14 +1,20 @@
 import "./App.css";
 import Hero from "./components/Hero";
-import NavBar from "./components/NavBar";
-import Outline from "./components/Outline";
+import Reviews from "./components/Reviews";
+import TopicInput from "./components/TopicInput";
 
 function App() {
   return (
     <>
       <main>
-        <Hero />
-        <Outline />
+        <div className="main">
+          <div className="gradient" />
+        </div>
+        <div className="app">
+          <Hero />
+          <TopicInput />
+          <Reviews />
+        </div>
       </main>
     </>
   );
