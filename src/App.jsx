@@ -1,20 +1,16 @@
-import Hero from "./components/Hero";
-import Layout from "./components/Layout/Layout";
-import Reviews from "./components/Reviews";
 import "./App.css";
+import { Routes, Route } from "react-router-dom";
+import Home from "./pages/Home";
+import Outliner from "./pages/Outliner";
 
 function App() {
   return (
     <>
-      <div className="main">
-        <div className="gradient" />
-      </div>
-
       <div className="app">
-        <Layout>
-          <Hero />
-          <Reviews />
-        </Layout>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/outliner" element={<Outliner />} />
+        </Routes>
       </div>
     </>
   );
