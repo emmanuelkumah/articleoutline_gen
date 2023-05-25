@@ -1,8 +1,13 @@
 import React, { useState } from "react";
 import { Configuration, OpenAIApi } from "openai";
+import ArticleDetails from "./ArticleDetails";
+import toast, { Toaster } from "react-hot-toast";
 
 const TopicInput = () => {
   const [topic, setTopic] = useState("");
+  const [outline, setOutline] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
+  const [hasResponse, setHasResponse] = useState(false);
 
   const configuration = new Configuration({
     apiKey: import.meta.env.VITE_REACT_OPENAI_KEY,
@@ -16,31 +21,62 @@ const TopicInput = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    fetchData(topic);
+    //setIsLoading(true);
+    validateInput(topic);
+    //clear inputs
+    setTopic("");
   };
+
+  function validateInput(input) {
+    const regExp = /Write an article outline/g;
+    const result = regExp.test(input);
+    if (!result) {
+      inputErrorNotification();
+    } else {
+      return fetchData(input);
+    }
+  }
 
   async function fetchData(input) {
     try {
       const result = await openai.createCompletion({
         model: "text-davinci-003",
-        prompt: `Generate a detailed blog post outline using: ${input}`,
+        prompt: input,
+        temperature: 1,
+        max_tokens: 256,
+        top_p: 1,
+        frequency_penalty: 0,
+        presence_penalty: 0,
       });
-      console.log(result.data.choices[0].text);
+      setOutline(result.data.choices[0].text);
+      setIsLoading(false);
+      setHasResponse(true);
     } catch (error) {
       console.log(error);
     }
   }
 
+  //error notification
+  const inputErrorNotification = () => {
+    toast.error("Please use the format in the text input");
+  };
   return (
     <>
+      <div className="mt-10">
+        {/* <button onClick={notify} className="bg-red-50">
+          Make a toast
+        </button> */}
+        <Toaster />
+      </div>
       <form className="w-full mt-10" onSubmit={handleSubmit}>
         <div className="flex flex-col md:flex-row">
           <input
             className="w-full outline-dashed outline-pink-500 p-4 mb-2 bg-white rounded text-md focus:outline md:w-5/6"
             type="text"
-            placeholder="Eg. Write an outline for DOM Manipulation "
+            placeholder="Eg. Write an article outline for Functions in JavaScript"
             value={topic}
             onChange={handleInputChange}
+            required
           />
           <button
             type="submit"
@@ -50,7 +86,9 @@ const TopicInput = () => {
           </button>
         </div>
       </form>
-      <code>{JSON.stringify(import.meta.env.VITE_REACT_OPENAI_KEY)}</code>
+      {isLoading && <p>Fetching outline</p>}
+      {/* Details  */}
+      {hasResponse ? <ArticleDetails outline={outline} /> : ""}
     </>
   );
 };
