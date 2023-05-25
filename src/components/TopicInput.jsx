@@ -1,7 +1,14 @@
 import React, { useState } from "react";
+import { Configuration, OpenAIApi } from "openai";
 
 const TopicInput = () => {
   const [topic, setTopic] = useState("");
+
+  const configuration = new Configuration({
+    apiKey: import.meta.env.VITE_REACT_OPENAI_KEY,
+  });
+
+  const openai = new OpenAIApi(configuration);
 
   const handleInputChange = (e) => {
     setTopic(e.target.value);
@@ -9,8 +16,21 @@ const TopicInput = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(topic);
+    fetchData(topic);
   };
+
+  async function fetchData(input) {
+    try {
+      const result = await openai.createCompletion({
+        model: "text-davinci-003",
+        prompt: `Generate a detailed blog post outline using: ${input}`,
+      });
+      console.log(result.data.choices[0].text);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
   return (
     <>
       <form className="w-full mt-10" onSubmit={handleSubmit}>
@@ -30,6 +50,7 @@ const TopicInput = () => {
           </button>
         </div>
       </form>
+      <code>{JSON.stringify(import.meta.env.VITE_REACT_OPENAI_KEY)}</code>
     </>
   );
 };
