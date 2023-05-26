@@ -2,12 +2,14 @@ import React, { useState } from "react";
 import { Configuration, OpenAIApi } from "openai";
 import ArticleDetails from "./ArticleDetails";
 import toast, { Toaster } from "react-hot-toast";
+import { ReactComponent as Loader } from "../assets/loader.svg";
 
 const TopicInput = () => {
   const [topic, setTopic] = useState("");
   const [outline, setOutline] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [hasResponse, setHasResponse] = useState(false);
+  const [hasError, setHasError] = useState("");
 
   const configuration = new Configuration({
     apiKey: import.meta.env.VITE_REACT_OPENAI_KEY,
@@ -21,7 +23,7 @@ const TopicInput = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    //setIsLoading(true);
+
     validateInput(topic);
     //clear inputs
     setTopic("");
@@ -33,6 +35,7 @@ const TopicInput = () => {
     if (!result) {
       inputErrorNotification();
     } else {
+      setIsLoading(true);
       return fetchData(input);
     }
   }
@@ -48,11 +51,14 @@ const TopicInput = () => {
         frequency_penalty: 0,
         presence_penalty: 0,
       });
+      console.log(result.data.choices[0].text);
       setOutline(result.data.choices[0].text);
       setIsLoading(false);
       setHasResponse(true);
     } catch (error) {
       console.log(error);
+      setIsLoading(false);
+      setHasError(error);
     }
   }
 
@@ -63,9 +69,6 @@ const TopicInput = () => {
   return (
     <>
       <div className="mt-10">
-        {/* <button onClick={notify} className="bg-red-50">
-          Make a toast
-        </button> */}
         <Toaster />
       </div>
       <form className="w-full mt-10" onSubmit={handleSubmit}>
@@ -86,9 +89,13 @@ const TopicInput = () => {
           </button>
         </div>
       </form>
-      {isLoading && <p>Fetching outline</p>}
+      {isLoading && <Loader />}
       {/* Details  */}
-      {hasResponse ? <ArticleDetails outline={outline} /> : ""}
+      {hasResponse ? (
+        <ArticleDetails outline={outline} />
+      ) : (
+        <code>{hasError}</code>
+      )}
     </>
   );
 };
