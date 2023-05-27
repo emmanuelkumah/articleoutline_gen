@@ -3,7 +3,7 @@ import { getDatabase } from "firebase/database";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyDqXq7AdKYOgMXBhlZx7lZTpDzgMopJKNA",
+  apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
   authDomain: "openai-179fb.firebaseapp.com",
   databaseURL: "https://openai-179fb-default-rtdb.firebaseio.com",
   projectId: "openai-179fb",
