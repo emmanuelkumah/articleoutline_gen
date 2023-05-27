@@ -4,6 +4,7 @@ import Home from "./pages/Home";
 import Outliner from "./pages/Outliner";
 
 function App() {
+  //https://openai-179fb-default-rtdb.firebaseio.com/
   return (
     <>
       <div className="app">

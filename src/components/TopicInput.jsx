@@ -1,8 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Configuration, OpenAIApi } from "openai";
 import ArticleDetails from "./ArticleDetails";
 import toast, { Toaster } from "react-hot-toast";
 import { ReactComponent as Loader } from "../assets/loader.svg";
+import { db } from "../utils/firebase";
+import { ref, push, get } from "firebase/database";
 
 const TopicInput = () => {
   const [topic, setTopic] = useState("");
@@ -10,6 +12,21 @@ const TopicInput = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [hasResponse, setHasResponse] = useState(false);
   const [hasError, setHasError] = useState("");
+
+  const outlineInDB = ref(db);
+
+  useEffect(() => {
+    get(outlineInDB).then((snapshot) => {
+      if (snapshot.exists()) {
+        const arrData = Object.values(snapshot.val());
+        console.log(arrData[0]);
+      } else {
+        console.log("does not exist");
+      }
+    });
+  }, []);
+
+  //  push(outlineInDB, outline);
 
   const configuration = new Configuration({
     apiKey: import.meta.env.VITE_REACT_OPENAI_KEY,
@@ -51,8 +68,18 @@ const TopicInput = () => {
         frequency_penalty: 0,
         presence_penalty: 0,
       });
-      console.log(result.data.choices[0].text);
-      setOutline(result.data.choices[0].text);
+
+      const outlineResponse = result.data.choices[0].text;
+      // send data to DB
+      push(outlineInDB, {
+        content: outlineResponse,
+      });
+      //fetch data from DB
+      // getOutlineFromDB(outlineInDB);
+      //getOutlineFromDB();
+
+      //setOutline(outlineInDB);
+
       setIsLoading(false);
       setHasResponse(true);
     } catch (error) {
