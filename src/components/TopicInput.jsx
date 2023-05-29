@@ -13,13 +13,14 @@ const TopicInput = () => {
   const [hasResponse, setHasResponse] = useState(false);
   const [hasError, setHasError] = useState("");
 
+  // create reference to the database
   const outlineInDB = ref(db);
 
   useEffect(() => {
     get(outlineInDB).then((snapshot) => {
       if (snapshot.exists()) {
         const arrData = Object.values(snapshot.val());
-        console.log(arrData[0]);
+        console.log(arrData.slice(-1));
       } else {
         console.log("does not exist");
       }
@@ -42,38 +43,47 @@ const TopicInput = () => {
     e.preventDefault();
 
     validateInput(topic);
+
     //clear inputs
     setTopic("");
   };
 
-  function validateInput(input) {
-    const regExp = /Write an article outline/g;
-    const result = regExp.test(input);
-    if (!result) {
+  function validateInput(topic) {
+    if (topic.length < 5) {
       inputErrorNotification();
     } else {
       setIsLoading(true);
-      return fetchData(input);
+      return fetchData(topic);
     }
   }
+
+  //error notification
+  const inputErrorNotification = () => {
+    toast.error("Topic should be more than 5 characters");
+  };
+
+  const sendToDB = (response) => {
+    push(outlineInDB, {
+      content: response,
+    });
+  };
 
   async function fetchData(input) {
     try {
       const result = await openai.createCompletion({
         model: "text-davinci-003",
-        prompt: input,
-        temperature: 1,
-        max_tokens: 256,
+        prompt: `Generate a maximum of 10 points article outline from:${input}`,
+        temperature: 0.5,
+        max_tokens: 100,
         top_p: 1,
         frequency_penalty: 0,
         presence_penalty: 0,
       });
-
-      const outlineResponse = result.data.choices[0].text;
+      const response = result.data.choices[0].text;
       // send data to DB
-      push(outlineInDB, {
-        content: outlineResponse,
-      });
+      sendToDB(response);
+      setOutline(response);
+
       //fetch data from DB
       // getOutlineFromDB(outlineInDB);
       //getOutlineFromDB();
@@ -89,10 +99,6 @@ const TopicInput = () => {
     }
   }
 
-  //error notification
-  const inputErrorNotification = () => {
-    toast.error("Please use the format in the text input");
-  };
   return (
     <>
       <div className="mt-10">
@@ -103,7 +109,7 @@ const TopicInput = () => {
           <input
             className="w-full outline-dashed outline-pink-500 p-4 mb-2 bg-white rounded text-md focus:outline md:w-5/6"
             type="text"
-            placeholder="Eg. Write an article outline for Functions in JavaScript"
+            placeholder="Enter topic"
             value={topic}
             onChange={handleInputChange}
             required
