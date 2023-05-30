@@ -4,7 +4,7 @@ import ArticleDetails from "./ArticleDetails";
 import toast, { Toaster } from "react-hot-toast";
 import { ReactComponent as Loader } from "../assets/loader.svg";
 import { db } from "../utils/firebase";
-import { ref, push, get } from "firebase/database";
+import { ref, push, onValue } from "firebase/database";
 
 const TopicInput = () => {
   const [topic, setTopic] = useState("");
@@ -14,20 +14,19 @@ const TopicInput = () => {
   const [hasError, setHasError] = useState("");
 
   // create reference to the database
-  const outlineInDB = ref(db);
+  const outlineRef = ref(db, "outline");
+
+  //this conent
 
   useEffect(() => {
-    get(outlineInDB).then((snapshot) => {
-      if (snapshot.exists()) {
-        const arrData = Object.values(snapshot.val());
-        console.log(arrData.slice(-1));
-      } else {
-        console.log("does not exist");
-      }
+    onValue(outlineRef, (snapshot) => {
+      const data = Object.values(snapshot.val())[0];
+      console.log(data);
+      const { content } = data;
+
+      setOutline(content);
     });
   }, []);
-
-  //  push(outlineInDB, outline);
 
   const configuration = new Configuration({
     apiKey: import.meta.env.VITE_REACT_OPENAI_KEY,
@@ -62,19 +61,22 @@ const TopicInput = () => {
     toast.error("Topic should be more than 5 characters");
   };
 
-  const sendToDB = (response) => {
-    push(outlineInDB, {
-      content: response,
+  //send data to DB
+  const sendToDB = (aiResponse) => {
+    push(outlineRef, {
+      content: aiResponse,
     });
+    setHasResponse(true);
+    setOutline(aiResponse);
   };
 
   async function fetchData(input) {
     try {
       const result = await openai.createCompletion({
         model: "text-davinci-003",
-        prompt: `Generate a maximum of 10 points article outline from:${input}`,
+        prompt: `Generate a minimum of 5 article outline from:${input}`,
         temperature: 0.5,
-        max_tokens: 100,
+        max_tokens: 140,
         top_p: 1,
         frequency_penalty: 0,
         presence_penalty: 0,
@@ -82,16 +84,10 @@ const TopicInput = () => {
       const response = result.data.choices[0].text;
       // send data to DB
       sendToDB(response);
-      setOutline(response);
-
-      //fetch data from DB
-      // getOutlineFromDB(outlineInDB);
-      //getOutlineFromDB();
-
-      //setOutline(outlineInDB);
+      //setOutline(response);
 
       setIsLoading(false);
-      setHasResponse(true);
+      //setHasResponse(true);
     } catch (error) {
       console.log(error);
       setIsLoading(false);
@@ -124,11 +120,8 @@ const TopicInput = () => {
       </form>
       {isLoading && <Loader />}
       {/* Details  */}
-      {hasResponse ? (
-        <ArticleDetails outline={outline} />
-      ) : (
-        <code>{hasError}</code>
-      )}
+
+      <ArticleDetails outline={outline} />
     </>
   );
 };

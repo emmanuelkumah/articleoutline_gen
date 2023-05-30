@@ -1,17 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { CopyToClipboard } from "react-copy-to-clipboard";
 import toast, { Toaster } from "react-hot-toast";
 import { AiOutlineCopy } from "react-icons/ai";
 
-
 const ArticleDetails = ({ outline }) => {
   const [copied, setCopied] = useState(false);
-
-  // useEffect(() => {
-  //   const outlineInDB = ref(db);
-
-  //   push(outlineInDB, outline);
-  // }, []);
 
   const handleCopy = () => {
     setCopied(true);
