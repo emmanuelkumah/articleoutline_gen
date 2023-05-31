@@ -1,5 +1,5 @@
 import React from "react";
-import Layout from "../components/Layout/Layout";
+import Layout from "../components/Layout/Layout2";
 import "../App.css";
 import TopicInput from "../components/TopicInput";
 

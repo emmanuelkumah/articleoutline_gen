@@ -1,7 +1,7 @@
 import React from "react";
 import { AiOutlineLinkedin, AiOutlineTwitter } from "react-icons/ai";
 
-const Footer = () => {
+const Footer2 = () => {
   return (
     <>
       <footer className="flex flex-col my-10 md:flex-row justify-between">
@@ -19,4 +19,4 @@ const Footer = () => {
   );
 };
 
-export default Footer;
+export default Footer2;

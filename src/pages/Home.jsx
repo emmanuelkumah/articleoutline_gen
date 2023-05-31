@@ -1,7 +1,7 @@
 import React from "react";
-import Hero from "../components/Hero";
+import Hero from "../components/Hero2";
 import Reviews from "../components/Reviews";
-import Layout from "../components/Layout/Layout";
+import Layout from "../components/Layout/Layout2";
 
 const Home = () => {
   return (

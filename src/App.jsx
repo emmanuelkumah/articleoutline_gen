@@ -1,16 +1,16 @@
-import "./App.css";
 import { Routes, Route } from "react-router-dom";
-import Home from "./pages/Home";
-import Outliner from "./pages/Outliner";
+
+import Landing from "./pages/Landing";
+import MainApp from "./pages/MainApp";
 
 function App() {
   //https://openai-179fb-default-rtdb.firebaseio.com/
   return (
     <>
-      <div className="app">
+      <div>
         <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/outliner" element={<Outliner />} />
+          <Route path="/" element={<Landing />} />
+          <Route path="/app" element={<MainApp />} />
         </Routes>
       </div>
     </>
