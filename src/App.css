@@ -1,4 +1,9 @@
 @tailwind base;
+@layer base {
+  html {
+    @apply text-white;
+  }
+}
 @tailwind components;
 @tailwind utilities;
 
@@ -68,7 +73,7 @@
 /* Tailwind Styles */
 
 .app {
-  @apply h-screen bg-gradient-to-b from-slate-950 to-slate-900;
+  @apply h-full bg-gradient-to-b from-slate-950 to-slate-900 md:h-screen;
 }
 .black_btn {
   @apply rounded-full border border-black bg-black py-1.5 px-5 text-sm text-white transition-all hover:bg-white hover:text-black;
@@ -79,6 +84,9 @@
 }
 .subHead_text {
   @apply flex justify-center text-2xl text-white;
+}
+.nav_items {
+  @apply block py-2 pl-3 pr-4 hover:bg-blue-700 rounded-lg;
 }
 
 .orange_gradient {
