@@ -35,7 +35,7 @@ const Navigation = () => {
               <li>
                 <a
                   href="#"
-                  className="block py-2 pl-3 pr-4 bg-blue-700 rounded-lg md:bg-transparent"
+                  className="block py-2 pl-3 pr-4 bg-red-500 rounded-lg md:bg-transparent"
                 >
                   Home
                 </a>

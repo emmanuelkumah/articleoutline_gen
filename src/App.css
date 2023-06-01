@@ -73,7 +73,7 @@
 /* Tailwind Styles */
 
 .app {
-  @apply h-full bg-gradient-to-b from-slate-950 to-slate-900 md:h-screen;
+  @apply h-full bg-gradient-to-b from-slate-950 to-slate-900 md:h-full;
 }
 .black_btn {
   @apply rounded-full border border-black bg-black py-1.5 px-5 text-sm text-white transition-all hover:bg-white hover:text-black;
@@ -86,9 +86,21 @@
   @apply flex justify-center text-2xl text-white;
 }
 .nav_items {
-  @apply block py-2 pl-3 pr-4 hover:bg-blue-700 rounded-lg;
+  @apply block py-2 pl-3 pr-4 hover:bg-red-500 rounded-lg;
 }
 
 .orange_gradient {
   @apply bg-gradient-to-r from-amber-500 via-orange-600 to-yellow-500 bg-clip-text text-transparent;
+}
+.heading_gradient {
+  @apply bg-gradient-to-r from-orange-600 via-amber-300 to-red-600 bg-clip-text text-transparent text-3xl font-thin font-poppins pt-10;
+}
+.product_title {
+  @apply flex gap-4 text-2xl py-6 font-thin;
+}
+.product_icon {
+  @apply bg-red-500 p-2 rounded-lg;
+}
+.video_title {
+  @apply bg-gradient-to-r from-orange-600 via-amber-300 to-red-600 bg-clip-text text-transparent text-3xl text-center capitalize mb-7 font-thin font-poppins;
 }
