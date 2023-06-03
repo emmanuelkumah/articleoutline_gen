@@ -9,14 +9,14 @@ const Main = () => {
       <main className="px-10 mt-10">
         <div className="flex flex-col md:grid grid-cols-2">
           <section>
-            <h2 className="heading_gradient">The Writers toolkit</h2>
+            <h2 className="main_heading_gradient">The Writers toolkit</h2>
             <p className="mt-6 text-3xl leading-lose font-thin md:text-7xl">
               Seamlessly create seo optimized and high quality content for your
               article, magazines, and website
             </p>
           </section>
           <section>
-            <h2 className="heading_gradient">Products</h2>
+            <h2 className="main_heading_gradient">Products</h2>
 
             <div>
               <h3 className="product_title">
@@ -65,9 +65,11 @@ const Main = () => {
         </div>
         <div className="mt-[10%]">
           <section>
-            <h2 className="video_title">Work smarter, not harder</h2>
+            <h2 className="main_heading_gradient text-center pb-5">
+              Work smarter, not harder
+            </h2>
             <p className="text-2xl text-center font-thin pb-7">
-              Avoid thinking so hard to write the quality content
+              Avoid thinking so hard to write quality content
             </p>
           </section>
 

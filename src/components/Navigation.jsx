@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { AiOutlineGithub } from "react-icons/ai";
 import { AiOutlineMenu, AiFillCloseSquare } from "react-icons/ai";
 import { TfiWrite } from "react-icons/tfi";
 
@@ -14,20 +13,16 @@ const Navigation = () => {
     <>
       <nav className="bg-transparent border-gray-200">
         <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
-          <a href="" className="flex items-center">
-            <img
-              src="https://flowbite.com/docs/images/logo.svg"
-              alt="ScripterLogo"
-              className="h-8 mr-3"
-            />
-            <span className="self-center text-2xl font-satoshi font-semibold whitespace-nowrap">
-              Scripter
+          <a href="" className="flex items-center text-4xl text-emerald-500">
+            <TfiWrite />
+            <span className="self-center  px-4 font-satoshi font-semibold whitespace-nowrap">
+              Scriptly
             </span>
           </a>
           <div
             className={
               isMenuClicked
-                ? `block absolute top-[10%] w-[90%] bg-slate-500 rounded-lg `
+                ? `block absolute top-[10%] w-[90%] bg-black border rounded-lg `
                 : `hidden w-full md:block md:w-auto`
             }
           >
@@ -35,7 +30,7 @@ const Navigation = () => {
               <li>
                 <a
                   href="#"
-                  className="block py-2 pl-3 pr-4 bg-red-500 rounded-lg md:bg-transparent"
+                  className="block py-2 pl-3 pr-4 bg-emerald-500 rounded-lg md:bg-transparent"
                 >
                   Home
                 </a>
