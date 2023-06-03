@@ -1,7 +1,8 @@
 @tailwind base;
 @layer base {
-  html {
-    @apply text-white;
+  html,
+  body {
+    @apply text-white  min-h-screen bg-gradient-to-b from-slate-950 via-indigo-950 to-slate-900;
   }
 }
 @tailwind components;
@@ -72,9 +73,9 @@
 
 /* Tailwind Styles */
 
-.app {
+/* .app {
   @apply h-full bg-gradient-to-b from-slate-950 to-slate-900 md:h-full;
-}
+} */
 .black_btn {
   @apply rounded-full border border-black bg-black py-1.5 px-5 text-sm text-white transition-all hover:bg-white hover:text-black;
 }
@@ -100,7 +101,6 @@
 }
 .main_heading_gradient {
   @apply bg-gradient-to-r from-emerald-500 via-sky-500 to-green-500  bg-clip-text text-transparent text-4xl md:text-5xl font-extrabold font-poppins pt-10;
-
 }
 .product_title {
   @apply flex gap-4 text-2xl py-6 font-thin;
