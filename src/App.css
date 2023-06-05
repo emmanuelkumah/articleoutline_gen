@@ -111,3 +111,6 @@
 .video_title {
   @apply bg-gradient-to-r from-orange-600 via-amber-300 to-red-600 bg-clip-text text-transparent text-3xl text-center capitalize mb-7 font-thin font-poppins;
 }
+.input_text {
+  @apply w-full bg-transparent border border-emerald-400 rounded-xl p-3  focus:outline-none;
+}
