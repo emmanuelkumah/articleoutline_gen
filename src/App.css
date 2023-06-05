@@ -114,3 +114,9 @@
 .input_text {
   @apply w-full bg-transparent border border-emerald-400 rounded-xl p-3  focus:outline-none;
 }
+.app_button {
+  @apply bg-gradient-to-r from-emerald-500 to-blue-500 rounded-lg hover:from-pink-500 hover:to-yellow-500 rounded-full mt-9 font-poppins font-thin text-2xl text-white px-5 py-2 animate-bounce;
+}
+.button_cta {
+  @apply bg-gradient-to-r from-emerald-500 to-blue-500 rounded-lg hover:from-pink-500 hover:to-yellow-500 rounded-full mt-9 font-poppins font-thin text-xl text-white px-5 py-2;
+}

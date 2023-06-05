@@ -108,9 +108,7 @@ const Hero = () => {
             </p>
           </div>
         </div>
-        <button className="bg-gradient-to-r from-emerald-500 to-blue-500 rounded-lg hover:from-pink-500 hover:to-yellow-500rounded-full mt-9 font-poppins font-thin text-2xl text-white px-5 py-2 animate-bounce ">
-          Get Started
-        </button>
+        <button className="app_button">Get Started</button>
       </section>
     </div>
   );
