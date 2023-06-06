@@ -3,7 +3,8 @@ import Layout from "../components/Layout/Layout";
 import SelectLang from "../components/UI/SelectLang";
 import { Configuration, OpenAIApi } from "openai";
 import toast, { Toaster } from "react-hot-toast";
-import OutlineContainer from "../components/UI/OutlineContainer";
+import OutlineContainer from "../components/UI/ArticleOutline/OutlineContainer";
+import Form from "../components/UI/ArticleOutline/Form";
 
 const ArticleOutline = () => {
   const [charCount, setCharCount] = useState(0);
@@ -59,7 +60,7 @@ const ArticleOutline = () => {
     try {
       const result = await openai.createCompletion({
         model: "text-davinci-003",
-        prompt: `Use the topic and keyword to generate an article outline in the selected language,and write each outline on a new line.
+        prompt: `Use the topic to generate an article outline in the selected language,and write each outline on a new line.
         ### 
         caption: Outline on how to build a successful career
         keyword: Career development
@@ -67,23 +68,16 @@ const ArticleOutline = () => {
         outline: 
         Outline on building a successful career
 
-        1. Identify your goals
-
-        2. Keep track of progress
-
-        3. Make a plan 
-
-        4. Stay positive 
-
-        5. Reflect often 
-
-        6. Network effectively
-
-        7. Know your strengths. 
-
-        8. Practice minfulness 
-
-        9. Conclusion
+        1. Overview
+        2. Identify your goals
+        3. Keep track of progress
+        4. Make a plan 
+        5. Stay positive 
+        6. Reflect often 
+        7. Network effectively
+        8. Know your strengths. 
+        9. Practice minfulness 
+        10. Conclusion
         ###
          caption: ${input.topic}
          language: ${input.language}
@@ -98,7 +92,6 @@ const ArticleOutline = () => {
       });
       const response = result.data.choices[0].text.trim();
       // send data to DB
-      console.log(response);
       setContent(response);
       setLoading(false);
       setHasResponse(true);
@@ -113,66 +106,27 @@ const ArticleOutline = () => {
         <div>
           <div className="flex flex-row flex-wrap px-10 mt-[5%]">
             <section className="w-full mb-10 border-[5px] border-red-400 rounded-2xl p-[2%] md:w-[25%] h-[50%]">
-              <form onSubmit={handleSubmission} className="px-4 py-6">
-                <div>
-                  <div className="flex justify-between mb-3">
-                    <label htmlFor="articleTitle">Article Title</label>
-                    <p
-                      className={
-                        charCount === 200 ? "text-red-500 text-xl" : ""
-                      }
-                    >
-                      {charCount}/200
-                    </p>
-                  </div>
-
-                  <input
-                    className="input_text"
-                    type="text"
-                    name="articleTitle"
-                    id=""
-                    placeholder="Enter topic"
-                    required
-                    onChange={handleTopic}
-                    value={articleDetails.topic}
-                    maxLength={200}
-                  />
-                </div>
-                <div>
-                  <div className="mt-8">
-                    <label htmlFor="keyword">Keyword</label>
-                  </div>
-                  <input
-                    className="input_text"
-                    type="text"
-                    placeholder="Add any related keyword"
-                    name="keyword"
-                    onChange={handleKeyWord}
-                    value={articleDetails.keyword}
-                  />
-                </div>
-                <div>
-                  <p className="mt-8">Select Language</p>
-                  <SelectLang
-                    setArticleDetails={setArticleDetails}
-                    articleDetails={articleDetails}
-                    setSelectedLang={setSelectedLang}
-                    selectedLang={selectedLang}
-                  />
-                </div>
-                <button className="button_cta">Generate</button>
-              </form>
+              <Form
+                handleSubmission={handleSubmission}
+                handleTopic={handleTopic}
+                handleKeyWord={handleKeyWord}
+                charCount={charCount}
+                articleDetails={articleDetails}
+                setArticleDetails={setArticleDetails}
+                selectedLang={selectedLang}
+              />
             </section>
 
             <section
               className={`${
                 hasResponse ? "flex" : "hidden"
-              } md:w-[70%] h-[100vh] border rounded-lg bg-slate-300 md:ml-10`}
+              } border rounded-lg bg-slate-300  md:flex md:w-[70%] md:ml-10`}
             >
               <OutlineContainer
                 content={content}
                 hasResponse={hasResponse}
                 loading={loading}
+                setLoading={setLoading}
               />
             </section>
           </div>
