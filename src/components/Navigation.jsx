@@ -16,7 +16,7 @@ const Navigation = () => {
           <a href="" className="flex items-center text-4xl text-emerald-500">
             <TfiWrite />
             <span className="self-center  px-4 font-satoshi font-semibold whitespace-nowrap">
-              Scriptly
+              ScriptLabz
             </span>
           </a>
           <div

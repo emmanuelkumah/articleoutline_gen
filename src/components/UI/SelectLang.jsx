@@ -29,14 +29,14 @@ const SelectLang = ({ articleDetails, setArticleDetails, selectedLang }) => {
 
   return (
     <>
-      <div className="mt-5 w-[50%] bg-transparent border border-emerald-400 rounded-full">
+      <div className="mt-5 w-[100%] bg-transparent border border-emerald-400 rounded-full">
         <Select
           defaultValue={selectedLang}
           options={options}
           onChange={handleChange}
           autoFocus={true}
           styles={customStyles}
-          placeholder="select lang"
+          placeholder="select language"
         />
       </div>
     </>
