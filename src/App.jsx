@@ -6,6 +6,7 @@ import ArticleOutline from "./pages/ArticleOutline";
 import ArticleIdeas from "./pages/ArticleIdeas";
 import Summarizer from "./pages/Summarizer";
 import Grammer from "./pages/Grammer";
+import Dashboard from "./pages/Dashboard";
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
       <div>
         <Routes>
           <Route path="/" element={<Landing />} />
+          <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/app" element={<MainApp />} />
           <Route path="/app/outline" element={<ArticleOutline />} />
           <Route path="/app/ideas" element={<ArticleIdeas />} />

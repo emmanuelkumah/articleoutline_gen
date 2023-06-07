@@ -1,4 +1,5 @@
 import React from "react";
+import { Button } from "flowbite-react";
 import "../../src/App.css";
 import { assets } from "../utils/images";
 import { AiOutlineCreditCard } from "react-icons/ai";
@@ -108,7 +109,8 @@ const Hero = () => {
             </p>
           </div>
         </div>
-        <button className="app_button">Get Started</button>
+        {/* <button className="app_button">Get Started</button> */}
+        <Button className="app_button">Try it Free</Button>
       </section>
     </div>
   );
