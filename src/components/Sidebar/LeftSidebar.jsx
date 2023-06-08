@@ -1,48 +1,79 @@
-import React from "react";
-import { Sidebar } from "flowbite-react";
-import { MdDashboard } from "react-icons/md";
-import { BsTools } from "react-icons/bs";
-import { VscWordWrap } from "react-icons/vsc";
+import React, { useState } from "react";
+import { HiMenuAlt3 } from "react-icons/hi";
+import { MdOutlineDashboard } from "react-icons/md";
+import { RiSettings4Line } from "react-icons/ri";
 import { AiOutlineFileWord } from "react-icons/ai";
-import { TfiWrite } from "react-icons/tfi";
-import { TiSortAlphabetically } from "react-icons/ti";
+import { FiMessageSquare, FiShoppingCart } from "react-icons/fi";
+import { FaSpellCheck } from "react-icons/fa";
+import { RiPagesLine } from "react-icons/ri";
+import { GiOpenBook } from "react-icons/gi";
+import { Link } from "react-router-dom";
+// import { AiOutlineFileWord } from "react-icons/ai";
 
 const LeftSidebar = () => {
+  const [open, setOpen] = useState(true);
+
+  const menus = [
+    { name: "dashboard", link: "/", icon: MdOutlineDashboard },
+    { name: "user", link: "/", icon: AiOutlineFileWord },
+    { name: "messages", link: "/", icon: FiMessageSquare },
+    {
+      name: "Article Outline",
+      link: "/",
+      icon: AiOutlineFileWord,
+    },
+    { name: "Grammer Check", link: "/", icon: FaSpellCheck },
+    { name: "Phrase Rewrite", link: "/", icon: GiOpenBook },
+    { name: "Article Ideas", link: "/", icon: RiPagesLine },
+    { name: "Contact", link: "/", icon: RiSettings4Line, margin: true },
+  ];
+
   return (
-    <div>
-      <Sidebar aria-label="sidebar" className="h-[100vh]">
-        <Sidebar.Logo href="#" img="/favicon.svg" imgAlt="Flowbite logo">
-          <p className="text-red-300">Scriptly</p>
-        </Sidebar.Logo>
-        <Sidebar.Items>
-          <Sidebar.ItemGroup>
-            <Sidebar.Item href="#" icon={MdDashboard}>
-              <p>Dashboard</p>
-            </Sidebar.Item>
-            <Sidebar.Collapse label="Tools" icon={BsTools}>
-              <Sidebar.Item href="#" icon={AiOutlineFileWord}>
-                Article Outline
-              </Sidebar.Item>
-              <Sidebar.Item href="#" icon={TfiWrite}>
-                Article Ideas
-              </Sidebar.Item>
-              <Sidebar.Item href="#" icon={VscWordWrap}>
-                Grammar Check
-              </Sidebar.Item>
-              <Sidebar.Item href="#" icon={TiSortAlphabetically}>
-                Phrase Rewrite
-              </Sidebar.Item>
-            </Sidebar.Collapse>
-            <Sidebar.Item href="#" label="Beta" labelColor="dark">
-              <p>Help</p>
-            </Sidebar.Item>
-            <Sidebar.Item href="#">
-              <p>Contact</p>
-            </Sidebar.Item>
-          </Sidebar.ItemGroup>
-        </Sidebar.Items>
-      </Sidebar>
-    </div>
+    <>
+      <div
+        className={`bg-[#0e0e0e] min-h-screen ${
+          open ? "w-72" : "w-16"
+        } duration-500 text-gray-100 px-4`}
+      >
+        <div className="py-3 flex justify-end">
+          <HiMenuAlt3
+            size={26}
+            className="cursor-pointer"
+            onClick={() => setOpen(!open)}
+          />
+        </div>
+        <div className="mt-4 flex flex-col gap-4 relative">
+          {menus?.map((menu, i) => (
+            <Link
+              to={menu?.link}
+              key={i}
+              className={` ${
+                menu?.margin && "mt-5"
+              } group flex items-center text-sm  gap-3.5 font-medium p-2 hover:bg-gray-800 rounded-md`}
+            >
+              <div>{React.createElement(menu?.icon, { size: "20" })}</div>
+              <h2
+                style={{
+                  transitionDelay: `${i + 3}00ms`,
+                }}
+                className={`  font-poppins  whitespace-pre duration-500 ${
+                  !open && "opacity-0 translate-x-28 overflow-hidden"
+                }`}
+              >
+                {menu?.name}
+              </h2>
+              <h2
+                className={`${
+                  open && "hidden"
+                } absolute left-48 bg-white font-semibold whitespace-pre text-gray-900 rounded-md drop-shadow-lg px-0 py-0 w-0 overflow-hidden group-hover:px-2 group-hover:py-1 group-hover:left-14 group-hover:duration-300 group-hover:w-fit  `}
+              >
+                {menu?.name}
+              </h2>
+            </Link>
+          ))}
+        </div>
+      </div>
+    </>
   );
 };
 

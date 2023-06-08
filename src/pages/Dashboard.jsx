@@ -1,17 +1,17 @@
-import React from "react";
-import SideBar_Main from "../components/SideBar_Main/SideBar_Main";
 import LeftSidebar from "../components/Sidebar/LeftSidebar";
+import SideBar_Main from "../components/SideBar_Main/SideBar_Main";
 
 const Dashboard = () => {
   return (
-    <div className="md:flex">
-      <div className="md:flex-none">
+    <section className="flex gap-6">
+      <div className="fixed">
         <LeftSidebar />
       </div>
-      <div className="md:grow overflow-auto">
+
+      <div className="overflow-y">
         <SideBar_Main />
       </div>
-    </div>
+    </section>
   );
 };
 
