@@ -15,8 +15,9 @@ function App() {
         <Routes>
           <Route path="/" element={<Landing />} />
           <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/outline" element={<ArticleOutline />} />
+
           <Route path="/app" element={<MainApp />} />
-          <Route path="/app/outline" element={<ArticleOutline />} />
           <Route path="/app/ideas" element={<ArticleIdeas />} />
           <Route path="/app/summary" element={<Summarizer />} />
           <Route path="/app/grammer" element={<Grammer />} />

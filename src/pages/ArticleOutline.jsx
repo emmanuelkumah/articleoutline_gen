@@ -5,6 +5,7 @@ import { Configuration, OpenAIApi } from "openai";
 import toast, { Toaster } from "react-hot-toast";
 import OutlineContainer from "../components/UI/ArticleOutline/OutlineContainer";
 import Form from "../components/UI/ArticleOutline/Form";
+import Toggle from "../components/UI/Toggle";
 
 const ArticleOutline = () => {
   const [charCount, setCharCount] = useState(0);
@@ -116,7 +117,7 @@ const ArticleOutline = () => {
                 selectedLang={selectedLang}
               />
             </section>
-
+            <Toggle />
             <section
               className={`${
                 hasResponse ? "flex" : "hidden"
