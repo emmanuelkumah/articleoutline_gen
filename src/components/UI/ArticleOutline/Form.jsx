@@ -86,7 +86,7 @@ const Form = ({
               />
             </div>
           ) : (
-            "Not toggled"
+            ""
           )}
         </section>
 

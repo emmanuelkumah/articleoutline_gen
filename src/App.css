@@ -107,6 +107,9 @@
 .sub_heading_gradient {
   @apply bg-gradient-to-r from-emerald-500 via-sky-500 to-green-500  bg-clip-text text-transparent text-3xl font-thin font-poppins pt-[7%] pb-5;
 }
+.outline_heading_gradient {
+  @apply bg-gradient-to-r from-emerald-500 via-sky-500 to-green-500  bg-clip-text text-transparent text-xl font-thin font-poppins;
+}
 .main_heading_gradient {
   @apply bg-gradient-to-r from-emerald-500 via-sky-500 to-green-500  bg-clip-text text-transparent text-4xl md:text-5xl font-extrabold font-poppins pt-10;
 }

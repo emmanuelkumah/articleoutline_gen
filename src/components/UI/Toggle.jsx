@@ -1,11 +1,8 @@
-import React, { useState } from "react";
-import { ToggleSwitch } from "flowbite-react";
+import React from "react";
 
-const Toggle = ({onToggle,isToggled}) => {
-
-
+const Toggle = ({ onToggle, isToggled }) => {
   const handleChange = () => {
-    onToggle(!isToggled)
+    onToggle(!isToggled);
   };
 
   return (

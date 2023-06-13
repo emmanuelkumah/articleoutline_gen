@@ -6,6 +6,7 @@ import toast, { Toaster } from "react-hot-toast";
 import OutlineContainer from "../components/UI/ArticleOutline/OutlineContainer";
 import Form from "../components/UI/ArticleOutline/Form";
 import Toggle from "../components/UI/Toggle";
+import ToggleContent from "../components/UI/ArticleOutline/ToggleContent";
 
 const ArticleOutline = () => {
   const [charCount, setCharCount] = useState(0);
@@ -23,6 +24,8 @@ const ArticleOutline = () => {
   const [loading, setLoading] = useState(false);
   const [hasResponse, setHasResponse] = useState(false);
   const [isToggled, setIsToggled] = useState(false);
+  const [showContent, setShowContent] = useState(false);
+  const [showInput, setShowInput] = useState(true);
 
   const handleTopic = (e) => {
     const count = e.target.value;
@@ -115,34 +118,34 @@ const ArticleOutline = () => {
         <div>
           <div className="flex flex-row flex-wrap px-10 mt-[5%]">
             <section className="w-full mb-10 border-[3px] border-slate-200 rounded-2xl p-[2%] md:w-[25%] h-[50%]">
-              <Form
-                handleSubmission={handleSubmission}
-                handleTopic={handleTopic}
-                handleKeyWord={handleKeyWord}
-                charCount={charCount}
-                articleDetails={articleDetails}
-                setArticleDetails={setArticleDetails}
-                selectedLang={selectedLang}
-                selectTone={selectTone}
-                setSelectTone={setSelectTone}
-                isToggled={isToggled}
-                setIsToggled={setIsToggled}
-                numResults={numResults}
-                setnumResults={setnumResults}
-              />
+              {showInput ? (
+                <Form
+                  handleSubmission={handleSubmission}
+                  handleTopic={handleTopic}
+                  handleKeyWord={handleKeyWord}
+                  charCount={charCount}
+                  articleDetails={articleDetails}
+                  setArticleDetails={setArticleDetails}
+                  selectedLang={selectedLang}
+                  selectTone={selectTone}
+                  setSelectTone={setSelectTone}
+                  isToggled={isToggled}
+                  setIsToggled={setIsToggled}
+                  numResults={numResults}
+                  setnumResults={setnumResults}
+                />
+              ) : (
+                <section>
+                  <OutlineContainer />
+                </section>
+              )}
             </section>
-            <section
-              className={`${
-                hasResponse ? "flex" : "hidden"
-              } border rounded-lg bg-slate-300  md:flex md:w-[70%] md:ml-10`}
-            >
-              <OutlineContainer
-                content={content}
-                hasResponse={hasResponse}
-                loading={loading}
-                setLoading={setLoading}
-              />
-            </section>
+            <ToggleContent
+              showContent={showContent}
+              showInput={showInput}
+              setShowInput={setShowInput}
+              setShowContent={setShowContent}
+            />
           </div>
         </div>
       </Layout>

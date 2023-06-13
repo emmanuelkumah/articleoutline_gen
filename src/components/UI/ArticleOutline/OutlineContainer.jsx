@@ -11,7 +11,11 @@ const OutlineContainer = ({ content, loading, hasResponse }) => {
       ) : hasResponse ? (
         <OutlineContent content={content} />
       ) : (
-        <OutlinePlaceholder />
+        <OutlinePlaceholder
+          heading="Let's start generating content"
+          subHeading="Everytime you click on the 'Generate' button, our AI goes to work to
+        fetch the desired response"
+        />
       )}
     </>
   );
