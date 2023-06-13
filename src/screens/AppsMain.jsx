@@ -8,8 +8,10 @@ const AppsMain = () => {
       <section className="">
         <div className="grid place-items-center">
           <h2 className="sub_heading_gradient">The Writers toolkit</h2>
-          <p className="text-2xl font-thin">Let's empower your ideas with AI</p>
-          <p className="text-2xl my-4">What do you want to create?</p>
+          <p className="text-lg md:text-xl font-thin">
+            Let's empower your ideas with AI
+          </p>
+          <p className="text-xl my-4">What do you want to create?</p>
         </div>
       </section>
 

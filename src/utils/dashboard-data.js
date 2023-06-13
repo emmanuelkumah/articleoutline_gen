@@ -5,6 +5,14 @@ import articleIcon4 from "../assets/images/articleIcon4.png";
 import chat from "../assets/images/chat.jpg";
 import copy from "../assets/images/copy.jpg";
 
+import { MdOutlineDashboard } from "react-icons/md";
+import { RiSettings4Line } from "react-icons/ri";
+import { AiOutlineFileWord, AiOutlineComment } from "react-icons/ai";
+import { FiMessageSquare } from "react-icons/fi";
+import { FaSpellCheck } from "react-icons/fa";
+import { RiPagesLine } from "react-icons/ri";
+import { GiOpenBook } from "react-icons/gi";
+
 export const app_content = [
   {
     id: 1,
@@ -53,4 +61,21 @@ export const app_content = [
     icon: copy,
     url: "app/copy",
   },
+];
+
+export const menus = [
+  { name: "Home", link: "/", icon: MdOutlineDashboard },
+
+  { name: "Apps", link: "/", icon: FiMessageSquare, margin: true },
+  {
+    name: "Article Outline",
+    link: "/",
+    icon: AiOutlineFileWord,
+  },
+  { name: "Grammer Check", link: "/app/grammar", icon: FaSpellCheck },
+  { name: "Phrase Rewrite", link: "/app/rewrite", icon: GiOpenBook },
+  { name: "Article Ideas", link: "/app/ideas", icon: RiPagesLine },
+  { name: "Promo Copy", link: "/app/copy", icon: RiPagesLine },
+  { name: "Viral Posts", link: "/", icon: AiOutlineComment },
+  { name: "Contact", link: "/", icon: RiSettings4Line, margin: true },
 ];

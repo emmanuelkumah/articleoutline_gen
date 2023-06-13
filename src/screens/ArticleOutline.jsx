@@ -13,11 +13,16 @@ const ArticleOutline = () => {
     topic: "",
     keyword: "",
     language: "",
+    tone: "",
+    numResults: "",
   });
   const [selectedLang, setSelectedLang] = useState("English");
+  const [selectTone, setSelectTone] = useState("Professional");
+  const [numResults, setnumResults] = useState(1);
   const [content, setContent] = useState("");
   const [loading, setLoading] = useState(false);
   const [hasResponse, setHasResponse] = useState(false);
+  const [isToggled, setIsToggled] = useState(false);
 
   const handleTopic = (e) => {
     const count = e.target.value;
@@ -36,6 +41,8 @@ const ArticleOutline = () => {
       topic: articleDetails.topic,
       keyword: articleDetails.keyword,
       language: articleDetails.language,
+      tone: articleDetails.tone,
+      numResults: articleDetails.numResults,
     };
     console.log(formData);
     //clear inputs
@@ -44,10 +51,11 @@ const ArticleOutline = () => {
       topic: "",
       keyword: "",
       language: "",
+      tone: "",
     });
     setLoading(true);
     //send data to openai
-    fetchData(formData);
+    // fetchData(formData);
   };
 
   //open ai config
@@ -106,7 +114,7 @@ const ArticleOutline = () => {
       <Layout>
         <div>
           <div className="flex flex-row flex-wrap px-10 mt-[5%]">
-            <section className="w-full mb-10 border-[5px] border-red-400 rounded-2xl p-[2%] md:w-[25%] h-[50%]">
+            <section className="w-full mb-10 border-[3px] border-slate-200 rounded-2xl p-[2%] md:w-[25%] h-[50%]">
               <Form
                 handleSubmission={handleSubmission}
                 handleTopic={handleTopic}
@@ -115,9 +123,14 @@ const ArticleOutline = () => {
                 articleDetails={articleDetails}
                 setArticleDetails={setArticleDetails}
                 selectedLang={selectedLang}
+                selectTone={selectTone}
+                setSelectTone={setSelectTone}
+                isToggled={isToggled}
+                setIsToggled={setIsToggled}
+                numResults={numResults}
+                setnumResults={setnumResults}
               />
             </section>
-            <Toggle />
             <section
               className={`${
                 hasResponse ? "flex" : "hidden"

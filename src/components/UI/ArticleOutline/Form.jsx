@@ -1,5 +1,8 @@
 import React from "react";
 import SelectLang from "../SelectLang";
+import Toggle from "../Toggle";
+import SelectTone from "./SelectTone";
+import SelectNumResults from "./SelectNumResults";
 
 const Form = ({
   handleSubmission,
@@ -10,6 +13,12 @@ const Form = ({
   setSelectedLang,
   setArticleDetails,
   selectedLang,
+  selectTone,
+  setSelectTone,
+  isToggled,
+  setIsToggled,
+  noResults,
+  setNoResults,
 }) => {
   return (
     <div>
@@ -35,8 +44,9 @@ const Form = ({
           />
         </div>
         <div>
-          <div className="mt-8">
+          <div className="my-4">
             <label htmlFor="keyword">Keyword</label>
+            <span className="text-sm text-slate-400 px-3">(optional)</span>
           </div>
           <input
             className="input_text"
@@ -47,15 +57,39 @@ const Form = ({
             value={articleDetails.keyword}
           />
         </div>
-        <div>
-          <p className="mt-8">Select Language</p>
-          <SelectLang
-            setArticleDetails={setArticleDetails}
-            articleDetails={articleDetails}
-            setSelectedLang={setSelectedLang}
-            selectedLang={selectedLang}
-          />
-        </div>
+        {/* show advanced options */}
+        <Toggle onToggle={setIsToggled} isToggled={isToggled} />
+
+        <section>
+          {isToggled ? (
+            <div>
+              <p className="mt-8">Select Language</p>
+              <SelectLang
+                setArticleDetails={setArticleDetails}
+                articleDetails={articleDetails}
+                setSelectedLang={setSelectedLang}
+                selectedLang={selectedLang}
+              />
+              <p className="pt-8">Select Tone</p>
+              <SelectTone
+                selectTone={selectTone}
+                setSelectTone={setSelectTone}
+                articleDetails={articleDetails}
+                setArticleDetails={setArticleDetails}
+              />
+              <p className="pt-8">Number of results</p>
+              <SelectNumResults
+                noResults={noResults}
+                setNoResults={setNoResults}
+                articleDetails={articleDetails}
+                setArticleDetails={setArticleDetails}
+              />
+            </div>
+          ) : (
+            "Not toggled"
+          )}
+        </section>
+
         <button className="button_cta">Generate</button>
       </form>
     </div>

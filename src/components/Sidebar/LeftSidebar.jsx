@@ -1,31 +1,10 @@
-import React, { useState } from "react";
+import React from "react";
 import { HiMenuAlt3 } from "react-icons/hi";
-import { MdOutlineDashboard } from "react-icons/md";
-import { RiSettings4Line } from "react-icons/ri";
-import { AiOutlineFileWord } from "react-icons/ai";
-import { FiMessageSquare, FiShoppingCart } from "react-icons/fi";
-import { FaSpellCheck } from "react-icons/fa";
-import { RiPagesLine } from "react-icons/ri";
-import { GiOpenBook } from "react-icons/gi";
+
 import { Link } from "react-router-dom";
-// import { AiOutlineFileWord } from "react-icons/ai";
+import { menus } from "../../utils/dashboard-data";
 
 const LeftSidebar = ({ openSidebar, setOpenSidebar }) => {
-  const menus = [
-    { name: "dashboard", link: "/", icon: MdOutlineDashboard },
-    { name: "user", link: "/", icon: AiOutlineFileWord },
-    { name: "messages", link: "/", icon: FiMessageSquare },
-    {
-      name: "Article Outline",
-      link: "/",
-      icon: AiOutlineFileWord,
-    },
-    { name: "Grammer Check", link: "/", icon: FaSpellCheck },
-    { name: "Phrase Rewrite", link: "/", icon: GiOpenBook },
-    { name: "Article Ideas", link: "/", icon: RiPagesLine },
-    { name: "Contact", link: "/", icon: RiSettings4Line, margin: true },
-  ];
-
   return (
     <>
       <div
@@ -47,7 +26,7 @@ const LeftSidebar = ({ openSidebar, setOpenSidebar }) => {
               to={menu?.link}
               key={i}
               className={` ${
-                menu?.margin && "mt-5"
+                menu?.margin && "mt-8 border border-slate-400"
               } group flex items-center text-sm  gap-3.5 font-medium p-2 hover:bg-gray-800 rounded-md`}
             >
               <div>{React.createElement(menu?.icon, { size: "20" })}</div>

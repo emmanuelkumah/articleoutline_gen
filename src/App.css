@@ -120,7 +120,7 @@
   @apply bg-gradient-to-r from-orange-600 via-amber-300 to-red-600 bg-clip-text text-transparent text-3xl text-center capitalize mb-7 font-thin font-poppins;
 }
 .input_text {
-  @apply w-full bg-transparent border border-emerald-400 rounded-xl p-3 my-4 focus:outline-none;
+  @apply w-full bg-transparent border border-emerald-400 rounded-xl p-3 focus:outline-none;
 }
 .app_button {
   @apply bg-gradient-to-r from-emerald-500 to-blue-500 rounded-lg hover:from-pink-500 hover:to-yellow-500 rounded-full mt-9 font-poppins font-thin text-2xl text-white px-5 py-2 animate-bounce;
