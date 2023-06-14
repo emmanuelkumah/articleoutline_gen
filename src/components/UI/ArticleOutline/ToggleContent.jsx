@@ -19,9 +19,9 @@ const ToggleContent = ({
   };
   return (
     <div>
-      <div className="flex items-center">
+      <div className="flex items-center mb-6">
         <button
-          className="bg-slate-400 relative inline-flex flex-shrink-0 h-12 w-48 rounded-full cursor-pointer transition-colors ease-in-out duration-200 focus:outline-none shadow-switchContentButton"
+          className="bg-slate-400 relative inline-flex flex-1 h-12 w-48 rounded-full cursor-pointer"
           id="headlessui-switch-:rj:"
           role="switch"
           type="button"

@@ -6,7 +6,7 @@ const Dashboard = () => {
   const [openSidebar, setOpenSidebar] = useState(true);
   return (
     <section className="gap-6">
-      <div className="fixed">
+      <div className="fixed z-20">
         <LeftSidebar
           openSidebar={openSidebar}
           setOpenSidebar={setOpenSidebar}

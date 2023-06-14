@@ -55,10 +55,11 @@ const ArticleOutline = () => {
       keyword: "",
       language: "",
       tone: "",
+      numResults: "",
     });
     setLoading(true);
     //send data to openai
-    // fetchData(formData);
+    fetchData(formData);
   };
 
   //open ai config
@@ -72,13 +73,17 @@ const ArticleOutline = () => {
     try {
       const result = await openai.createCompletion({
         model: "text-davinci-003",
-        prompt: `Use the topic to generate an article outline in the selected language,and write each outline on a new line.
+
+        prompt: `Write ${input.numResults} article outlines in the selected language, and write each outline on a new line
         ### 
         caption: Outline on how to build a successful career
         keyword: Career development
         langauge: English
+        tone: Professional
+        results: 2
         outline: 
-        Outline on building a successful career
+        
+        Tips on building a successful career
 
         1. Overview
         2. Identify your goals
@@ -90,21 +95,38 @@ const ArticleOutline = () => {
         8. Know your strengths. 
         9. Practice minfulness 
         10. Conclusion
+
+        Strategies  on building a successful career
+
+        1. It all begins with your purpose
+        2. Have a clear vision
+        3. Set career goals
+        4. Develop the skills, attitude and competence
+        5. Find a mentor 
+        6. Build professional networks
+        7. Read and study anything related to your career path
+        8. Sieze opportunities to expand yourself
+        9. Conclusion 
         ###
          caption: ${input.topic}
          language: ${input.language}
          keyword: ${input.keyword}
+         tone: ${input.tone}
+         results: ${input.numResults}
          outline:
         `,
         temperature: 0.5,
         max_tokens: 200,
         top_p: 1,
-        // frequency_penalty: 0,
-        // presence_penalty: 0,
+        frequency_penalty: 0,
+        presence_penalty: 0,
+        n: 2,
       });
-      const response = result.data.choices[0].text.trim();
-      // send data to DB
-      setContent(response);
+      console.log(result.data.choices[0].text.trim());
+      // const response = result.data.choices[0].text.trim();
+      // // send data to DB
+      // console.log(response);
+      // setContent(response);
       setLoading(false);
       setHasResponse(true);
     } catch (error) {

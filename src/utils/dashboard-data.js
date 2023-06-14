@@ -77,5 +77,6 @@ export const menus = [
   { name: "Article Ideas", link: "/app/ideas", icon: RiPagesLine },
   { name: "Promo Copy", link: "/app/copy", icon: RiPagesLine },
   { name: "Viral Posts", link: "/", icon: AiOutlineComment },
+  { name: "Youtube Contents", link: "/", icon: AiOutlineComment },
   { name: "Contact", link: "/", icon: RiSettings4Line, margin: true },
 ];
