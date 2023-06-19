@@ -7,6 +7,7 @@ import OutlineContainer from "../components/UI/ArticleOutline/OutlineContainer";
 import Form from "../components/UI/ArticleOutline/Form";
 import Toggle from "../components/UI/Toggle";
 import ToggleContent from "../components/UI/ArticleOutline/ToggleContent";
+import ArticleOutlineScreen from "../components/Layout/ArticleOutline/AO_Home";
 
 const ArticleOutline = () => {
   const [charCount, setCharCount] = useState(0);
@@ -142,53 +143,7 @@ const ArticleOutline = () => {
   return (
     <>
       <Layout>
-        <div className="md:flex">
-          <div className="w-[100%] md:w-[40%] hidden md:block">
-            <Form
-              handleSubmission={handleSubmission}
-              handleTopic={handleTopic}
-              handleKeyWord={handleKeyWord}
-              charCount={charCount}
-              articleDetails={articleDetails}
-              setArticleDetails={setArticleDetails}
-              selectedLang={selectedLang}
-              selectTone={selectTone}
-              setSelectTone={setSelectTone}
-              isToggled={isToggled}
-              setIsToggled={setIsToggled}
-              numResults={numResults}
-              setnumResults={setnumResults}
-            />
-          </div>
-          <div className="w-[100%] md:w-[60%]  border border-slate-500">
-            <div className="md:hidden">
-              {isToggled ? (
-                <div>mobile Content </div>
-              ) : (
-                <div>
-                  <Form
-                    handleSubmission={handleSubmission}
-                    handleTopic={handleTopic}
-                    handleKeyWord={handleKeyWord}
-                    charCount={charCount}
-                    articleDetails={articleDetails}
-                    setArticleDetails={setArticleDetails}
-                    selectedLang={selectedLang}
-                    selectTone={selectTone}
-                    setSelectTone={setSelectTone}
-                    isToggled={isToggled}
-                    setIsToggled={setIsToggled}
-                    numResults={numResults}
-                    setnumResults={setnumResults}
-                  />
-                </div>
-              )}
-            </div>
-          </div>
-        </div>
-        <div className="visible md:invisible">
-          <button onClick={handleToggle}>Switch</button>
-        </div>
+        <ArticleOutlineScreen />
       </Layout>
     </>
   );

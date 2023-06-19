@@ -38,8 +38,8 @@ const Form = ({
             id=""
             placeholder="Enter topic"
             required
-            onChange={handleTopic}
-            value={articleDetails.topic}
+            // onChange={handleTopic}
+            // value={articleDetails.topic}
             maxLength={200}
           />
         </div>
@@ -53,8 +53,8 @@ const Form = ({
             type="text"
             placeholder="Add any related keyword"
             name="keyword"
-            onChange={handleKeyWord}
-            value={articleDetails.keyword}
+            // onChange={handleKeyWord}
+            // value={articleDetails.keyword}
           />
         </div>
         {/* show advanced options */}
