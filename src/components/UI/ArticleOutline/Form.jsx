@@ -1,13 +1,12 @@
 import React, { useContext } from "react";
-import { AdvancedOptionsContext } from "../../../Context/OptionsContext";
+import { AdvancedOptionsContext } from "../../../Context/Context";
 import SelectLang from "../SelectLang";
 import Toggle from "../Toggle";
 import SelectTone from "./SelectTone";
 import SelectNumResults from "./SelectNumResults";
 
 const Form = ({}) => {
-  const showOptions = useContext(AdvancedOptionsContext);
-  console.log(showOptions);
+  const { showOptions, setShowOptions } = useContext(AdvancedOptionsContext);
   return (
     <div>
       <form className="px-4 py-6">
@@ -45,15 +44,15 @@ const Form = ({}) => {
             // value={articleDetails.keyword}
           />
         </div>
-        {showOptions ? (
+        <Toggle />
+        {showOptions && (
           <div>
             <SelectLang />
             <SelectNumResults />
             <SelectTone />
           </div>
-        ) : (
-          ""
         )}
+
         <button className="button_cta">Generate</button>
       </form>
     </div>

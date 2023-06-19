@@ -6,7 +6,7 @@ import toast, { Toaster } from "react-hot-toast";
 import OutlineContainer from "../components/UI/ArticleOutline/OutlineContainer";
 import Form from "../components/UI/ArticleOutline/Form";
 import Toggle from "../components/UI/Toggle";
-import ToggleContent from "../components/UI/ArticleOutline/ToggleContent";
+import ToggleContent from "../components/UI/ArticleOutline/SwitchViews";
 import ArticleOutlineScreen from "../components/Layout/ArticleOutline/AO_Home";
 
 const ArticleOutline = () => {
