@@ -27,6 +27,11 @@ const ArticleOutline = () => {
   const [showContent, setShowContent] = useState(false);
   const [showInput, setShowInput] = useState(true);
 
+  //handle toggle on mobile
+  const handleToggle = () => {
+    setIsToggled(!isToggled);
+  };
+
   const handleTopic = (e) => {
     const count = e.target.value;
     setArticleDetails({ ...articleDetails, topic: e.target.value });
@@ -137,38 +142,52 @@ const ArticleOutline = () => {
   return (
     <>
       <Layout>
-        <div>
-          <div className="flex flex-row flex-wrap px-10 mt-[5%]">
-            <section className="w-full mb-10 border-[3px] border-slate-200 rounded-2xl p-[2%] md:w-[25%] h-[50%]">
-              {showInput ? (
-                <Form
-                  handleSubmission={handleSubmission}
-                  handleTopic={handleTopic}
-                  handleKeyWord={handleKeyWord}
-                  charCount={charCount}
-                  articleDetails={articleDetails}
-                  setArticleDetails={setArticleDetails}
-                  selectedLang={selectedLang}
-                  selectTone={selectTone}
-                  setSelectTone={setSelectTone}
-                  isToggled={isToggled}
-                  setIsToggled={setIsToggled}
-                  numResults={numResults}
-                  setnumResults={setnumResults}
-                />
-              ) : (
-                <section>
-                  <OutlineContainer />
-                </section>
-              )}
-            </section>
-            <ToggleContent
-              showContent={showContent}
-              showInput={showInput}
-              setShowInput={setShowInput}
-              setShowContent={setShowContent}
+        <div className="md:flex">
+          <div className="w-[100%] md:w-[40%] hidden md:block">
+            <Form
+              handleSubmission={handleSubmission}
+              handleTopic={handleTopic}
+              handleKeyWord={handleKeyWord}
+              charCount={charCount}
+              articleDetails={articleDetails}
+              setArticleDetails={setArticleDetails}
+              selectedLang={selectedLang}
+              selectTone={selectTone}
+              setSelectTone={setSelectTone}
+              isToggled={isToggled}
+              setIsToggled={setIsToggled}
+              numResults={numResults}
+              setnumResults={setnumResults}
             />
           </div>
+          <div className="w-[100%] md:w-[60%]  border border-slate-500">
+            <div className="md:hidden">
+              {isToggled ? (
+                <div>mobile Content </div>
+              ) : (
+                <div>
+                  <Form
+                    handleSubmission={handleSubmission}
+                    handleTopic={handleTopic}
+                    handleKeyWord={handleKeyWord}
+                    charCount={charCount}
+                    articleDetails={articleDetails}
+                    setArticleDetails={setArticleDetails}
+                    selectedLang={selectedLang}
+                    selectTone={selectTone}
+                    setSelectTone={setSelectTone}
+                    isToggled={isToggled}
+                    setIsToggled={setIsToggled}
+                    numResults={numResults}
+                    setnumResults={setnumResults}
+                  />
+                </div>
+              )}
+            </div>
+          </div>
+        </div>
+        <div className="visible md:invisible">
+          <button onClick={handleToggle}>Switch</button>
         </div>
       </Layout>
     </>
