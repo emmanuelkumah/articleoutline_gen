@@ -1,34 +1,22 @@
-import React from "react";
+import React, { useContext } from "react";
+import { AdvancedOptionsContext } from "../../../Context/OptionsContext";
 import SelectLang from "../SelectLang";
 import Toggle from "../Toggle";
 import SelectTone from "./SelectTone";
 import SelectNumResults from "./SelectNumResults";
 
-const Form = ({
-  handleSubmission,
-  handleKeyWord,
-  handleTopic,
-  articleDetails,
-  charCount,
-  setSelectedLang,
-  setArticleDetails,
-  selectedLang,
-  selectTone,
-  setSelectTone,
-  isToggled,
-  setIsToggled,
-  noResults,
-  setNoResults,
-}) => {
+const Form = ({}) => {
+  const showOptions = useContext(AdvancedOptionsContext);
+  console.log(showOptions);
   return (
     <div>
-      <form onSubmit={handleSubmission} className="px-4 py-6">
+      <form className="px-4 py-6">
         <div>
           <div className="flex justify-between mb-3">
             <label htmlFor="articleTitle">Article Title</label>
-            <p className={charCount === 200 ? "text-red-500 text-xl" : ""}>
+            {/* <p className={charCount === 200 ? "text-red-500 text-xl" : ""}>
               {charCount}/200
-            </p>
+            </p> */}
           </div>
 
           <input
@@ -57,39 +45,15 @@ const Form = ({
             // value={articleDetails.keyword}
           />
         </div>
-        {/* show advanced options */}
-        <Toggle onToggle={setIsToggled} isToggled={isToggled} />
-
-        <section>
-          {isToggled ? (
-            <div>
-              <p className="mt-8">Select Language</p>
-              <SelectLang
-                setArticleDetails={setArticleDetails}
-                articleDetails={articleDetails}
-                setSelectedLang={setSelectedLang}
-                selectedLang={selectedLang}
-              />
-              <p className="pt-8">Select Tone</p>
-              <SelectTone
-                selectTone={selectTone}
-                setSelectTone={setSelectTone}
-                articleDetails={articleDetails}
-                setArticleDetails={setArticleDetails}
-              />
-              <p className="pt-8">Number of results</p>
-              <SelectNumResults
-                noResults={noResults}
-                setNoResults={setNoResults}
-                articleDetails={articleDetails}
-                setArticleDetails={setArticleDetails}
-              />
-            </div>
-          ) : (
-            ""
-          )}
-        </section>
-
+        {showOptions ? (
+          <div>
+            <SelectLang />
+            <SelectNumResults />
+            <SelectTone />
+          </div>
+        ) : (
+          ""
+        )}
         <button className="button_cta">Generate</button>
       </form>
     </div>
