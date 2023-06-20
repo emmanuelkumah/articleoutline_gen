@@ -14,7 +14,7 @@ import Ideas from "./screens/Ideas.jsx";
 
 const router = createBrowserRouter([
   {
-    path: "/",
+    path: "/articleoutline_gen",
     element: <Root />,
     errorElement: <ErrorPage />,
   },
