@@ -5,7 +5,7 @@ on:
       - main
   pull_request:
       - main
-jobs
+jobs:
  #Build Job
   build:
     name: Build
