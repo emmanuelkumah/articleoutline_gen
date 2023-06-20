@@ -2,7 +2,6 @@ import React, { useContext } from "react";
 import { FormOptionsContext } from "../../../Context/Context";
 import SelectLang from "../SelectLang";
 import Toggle from "../Toggle";
-import SelectTone from "./SelectTone";
 import SelectNumResults from "./SelectNumResults";
 
 const Form = ({}) => {
