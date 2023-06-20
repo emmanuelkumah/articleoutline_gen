@@ -1,21 +1,32 @@
 import React, { useContext } from "react";
-import { AdvancedOptionsContext } from "../../../Context/Context";
+import { FormOptionsContext } from "../../../Context/Context";
 import SelectLang from "../SelectLang";
 import Toggle from "../Toggle";
 import SelectTone from "./SelectTone";
 import SelectNumResults from "./SelectNumResults";
 
 const Form = ({}) => {
-  const { showOptions, setShowOptions } = useContext(AdvancedOptionsContext);
+  const {
+    showOptions,
+    charCount,
+    formFields,
+    handleTopicInput,
+    handleKeywordInput,
+    handleFormSubmission,
+  } = useContext(FormOptionsContext);
+
+  //destructuring fields
+  const { topic, keyword } = formFields;
+
   return (
     <div>
-      <form className="px-4 py-6">
+      <form className="px-4 py-6" onSubmit={handleFormSubmission}>
         <div>
           <div className="flex justify-between mb-3">
             <label htmlFor="articleTitle">Article Title</label>
-            {/* <p className={charCount === 200 ? "text-red-500 text-xl" : ""}>
+            <p className={charCount === 200 ? "text-red-500 text-xl" : ""}>
               {charCount}/200
-            </p> */}
+            </p>
           </div>
 
           <input
@@ -25,8 +36,8 @@ const Form = ({}) => {
             id=""
             placeholder="Enter topic"
             required
-            // onChange={handleTopic}
-            // value={articleDetails.topic}
+            value={topic}
+            onChange={handleTopicInput}
             maxLength={200}
           />
         </div>
@@ -40,8 +51,8 @@ const Form = ({}) => {
             type="text"
             placeholder="Add any related keyword"
             name="keyword"
-            // onChange={handleKeyWord}
-            // value={articleDetails.keyword}
+            value={keyword}
+            onChange={handleKeywordInput}
           />
         </div>
         <Toggle />
@@ -49,7 +60,6 @@ const Form = ({}) => {
           <div>
             <SelectLang />
             <SelectNumResults />
-            <SelectTone />
           </div>
         )}
 

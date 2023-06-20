@@ -1,12 +1,9 @@
-import React from "react";
+import React, { useContext } from "react";
 import Select from "react-select";
+import { FormOptionsContext } from "../../../Context/Context";
 
-const SelectNumResults = ({
-  numResults,
-  setnumResults,
-  setArticleDetails,
-  articleDetails,
-}) => {
+const SelectNumResults = () => {
+  const { formFields, handleNumResultsInput } = useContext(FormOptionsContext);
   const options = [
     { value: 1, label: 1 },
     { value: 2, label: 2 },
@@ -27,18 +24,13 @@ const SelectNumResults = ({
     singleValue: (defaultStyles) => ({ ...defaultStyles, color: "#fff" }),
   };
 
-  //indicate number of results to display
-  const handleSelectNumResults = (selectedResult) => {
-    console.log(selectedResult.value);
-    setArticleDetails({ ...articleDetails, numResults: selectedResult.value });
-  };
   return (
     <div>
       <div className="mt-5 w-[100%] bg-transparent border border-emerald-400 rounded-full">
         <Select
-          defaultValue={""}
+          defaultValue={formFields.numResults}
           options={options}
-          onChange={handleSelectNumResults}
+          onChange={handleNumResultsInput}
           autoFocus={true}
           styles={customStyles}
           placeholder="Number of results"

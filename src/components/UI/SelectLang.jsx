@@ -1,16 +1,17 @@
-import React from "react";
+import React, { useContext } from "react";
 import Select from "react-select";
+import { FormOptionsContext } from "../../Context/Context";
 
-const SelectLang = ({ articleDetails, setArticleDetails, selectedLang }) => {
+const SelectLang = () => {
   const options = [
     { value: "English", label: "English" },
     { value: "French", label: "French" },
     { value: "Dutch", label: "Dutch" },
   ];
 
-  const handleChange = (selectedOption) => {
-    setArticleDetails({ ...articleDetails, language: selectedOption.value });
-  };
+  const { formFields, handleLanguageSelection } =
+    useContext(FormOptionsContext);
+
   const customStyles = {
     option: (defaultStyles, state) => ({
       ...defaultStyles,
@@ -31,12 +32,12 @@ const SelectLang = ({ articleDetails, setArticleDetails, selectedLang }) => {
     <>
       <div className="mt-5 w-[100%] bg-transparent border border-emerald-400 rounded-full">
         <Select
-          defaultValue={selectedLang}
+          defaultValue={formFields.language}
           options={options}
-          onChange={handleChange}
+          onChange={handleLanguageSelection}
           autoFocus={true}
           styles={customStyles}
-          placeholder="select language"
+          placeholder="Select language"
         />
       </div>
     </>

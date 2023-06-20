@@ -1,14 +1,12 @@
 import { useContext } from "react";
 import Form from "../../UI/ArticleOutline/Form";
-import { AdvancedOptionsContext } from "../../../Context/Context";
+import { FormOptionsContext } from "../../../Context/Context";
 import SwitchViews from "../../UI/ArticleOutline/SwitchViews";
 import OutlineContainer from "../../UI/ArticleOutline/OutlineContainer";
 
-const AO_MobileLayout = ({ toggleLayout, setToggleLayout }) => {
-  const { showOptions, switchView, setShowOptions, setSwitchView } = useContext(
-    AdvancedOptionsContext
-  );
-  console.log(switchView);
+const AO_MobileLayout = () => {
+  const { showOptions, switchView, setShowOptions, setSwitchView } =
+    useContext(FormOptionsContext);
 
   function handleToggleLayout() {
     setSwitchView(!switchView);

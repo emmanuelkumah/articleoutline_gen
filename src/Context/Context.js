@@ -1,3 +1,3 @@
 import { createContext } from "react";
 
-export const AdvancedOptionsContext = createContext("default value");
+export const FormOptionsContext = createContext("default value");
