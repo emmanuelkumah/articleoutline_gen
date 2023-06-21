@@ -1,18 +1,20 @@
 import React from "react";
 import { Button } from "flowbite-react";
 import "../../src/App.css";
-import { assets } from "../utils/images";
-import { AiOutlineCreditCard } from "react-icons/ai";
-import { BsKeyFill } from "react-icons/bs";
 import { TypeAnimation } from "react-type-animation";
+import img1 from "../assets/images/img-1.svg";
+import img2 from "../assets/images/img-2.svg";
+import img3 from "../assets/images/img-3.svg";
+import marketter from "../assets/images/icon-26.svg";
+import copywriting from "../assets/images/copywriting-1.svg";
 
 const Hero = () => {
   return (
     <div>
       <section className="grid place-items-center py-9 px-4">
         <div className="text-center mt-[10%]">
-          <h1 className="text-white text-4xl md:text-7xl">
-            Generate accurate content
+          <h1 className="text-white text-3xl font-bold md:text-5xl">
+            Optimize your content strategy
             <span className="relative mx-2 whitespace-nowrap">
               swiftly
               <svg
@@ -28,49 +30,43 @@ const Hero = () => {
         </div>
         {/* hero images */}
         <div>
-          <div className="invisible md:visible absolute top-[10%] left-[15%]">
-            <img
-              src={assets[0]}
-              alt="hero1"
-              className="w-[40%] relative left-5"
-            />
+          <div className="invisible md:visible absolute top-[20%] left-[25%]">
+            <img src={img1} alt="hero1" className="w-[40%] relative left-7" />
             <p className="bg-slate-400 text-slate-950 rounded-full w-fit px-4 mt-2">
               Freelancer
             </p>
           </div>
           <div className="invisible md:visible absolute top-[50%] left-[5%]">
-            <img
-              src={assets[1]}
-              alt="hero2"
-              className="w-[40%] relative left-5"
-            />
+            <img src={img2} alt="hero2" className="w-[40%] relative left-7" />
             <p className="bg-slate-400 text-slate-950 rounded-full w-fit px-4 mt-2">
-              Marketter
+              Marketer
             </p>
           </div>
           <div className="invisible md:visible absolute top-[20%] right-[7%]">
             <img
-              src={assets[2]}
+              src={copywriting}
               alt="hero3"
               className="w-[40%] relative left-10"
             />
             <p className="bg-slate-400 text-slate-950 rounded-full w-fit px-4 mt-2">
-              Technical writer
+              Article Outline
             </p>
           </div>
           <div className="invisible md:visible absolute top-[66%] right-[10%]">
             <img
-              src={assets[3]}
+              src={marketter}
               alt="hero4"
-              className="w-[40%] relative left-5"
+              className="w-[50%] relative left-7"
             />
             <p className="bg-slate-400 text-slate-950 rounded-full w-fit px-4 mt-2">
-              Publisher
+              Copywriting
             </p>
           </div>
         </div>
         <div className="my-10">
-          <span className="text-4xl capitalize md:text-4xl">We help you </span>
+          <span className="text-3xl text-center capitalize md:text-4xl">
+            Ecrit helps you{" "}
+          </span>
           <span className="typewriter_gradient">
             <TypeAnimation
               sequence={[
@@ -82,6 +78,8 @@ const Hero = () => {
                 1000,
                 "generate article ideas",
                 1000,
+                "write short poems",
+                1000,
               ]}
               speed={{ type: "keyStrokeDelayInMs", value: 250 }}
               wrapper="span"
@@ -90,27 +88,18 @@ const Hero = () => {
             />
           </span>
         </div>
-
-        <p className="font-poppins font-thin leading-6 text-xl text-slate-200 text-justify mt-7">
-          No more struggling with writer's block, generate high quality AI
-          driven content for your blogs, brochure, emails and website
-        </p>
-        <div className="flex gap-10 mt-7 text-slate-200">
-          <div className="flex gap-2 font-thin border-l-4 border-red-500 rounded-lg px-3 py-2">
-            <p>
-              <BsKeyFill />
-            </p>
-            <p>No Sign ups </p>
-          </div>
-          <div className="flex gap-2 font-thin border-r-4 border-red-500 rounded-lg px-3 py-2">
-            <p>No credit card</p>
-            <p>
-              <AiOutlineCreditCard />
-            </p>
-          </div>
+        <div className="my-5">
+          <p className="font-poppins font-thin leading-8 text-xl text-slate-200 text-center  md:px-[17%]">
+            No more struggling with writer's block. Generate high quality AI
+            driven content. Get free content for your blogs, brochure, emails
+            and websites.
+          </p>
         </div>
-        {/* <button className="app_button">Get Started</button> */}
-        <Button className="app_button">Try it Free</Button>
+
+        <Button className="app_button">Start writing for free</Button>
+        <div>
+          <p>No Sign-up required </p>
+        </div>
       </section>
     </div>
   );

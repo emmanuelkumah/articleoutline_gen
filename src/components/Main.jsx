@@ -1,68 +1,30 @@
 import React from "react";
-import { BsBook, BsPen } from "react-icons/bs";
-import { FaRegNewspaper } from "react-icons/fa";
 import { assets } from "../utils/images";
+import { homeProducts } from "../utils/productsData";
+import SingleProduct from "./UI/SingleProduct";
 
 const Main = () => {
   return (
     <>
-      <main className="px-10 mt-10">
-        <div className="flex flex-col md:grid grid-cols-2">
-          <section>
+      <main className="px-10">
+        <div>
+          <section className="mx-auto">
             <h2 className="main_heading_gradient">The Writers toolkit</h2>
-            <p className="mt-6 text-3xl leading-lose font-thin md:text-7xl">
-              Seamlessly create seo optimized and high quality content for your
-              article, magazines, and website
+            <p className="mt-3 text-xl leading-lose font-thin md:px-[20%] md:text-lg  md:text-center">
+              Seamlessly create seo optimized and high quality content. Let our
+              AI assist with most time consuming to write blog articles, product
+              descriptions,summarize article and more.
             </p>
           </section>
           <section>
-            <h2 className="main_heading_gradient">Products</h2>
-
-            <div>
-              <h3 className="product_title">
-                <p className="product_icon">
-                  <BsBook />
-                </p>
-                Article Outline Generator
-              </h3>
-              <p>
-                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nobis
-                voluptatem cumque molestiae, distinctio quaerat iusto laborum
-                eos voluptas facilis reiciendis id repellat ipsum dolores cum
-                sapiente, molestias ea sit fugit!
-              </p>
-            </div>
-
-            <div>
-              <div className="product_title">
-                <p className="product_icon">
-                  <BsPen />
-                </p>
-                <h3>Article Idea Generator</h3>
-              </div>
-              <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga
-                odio adipisci recusandae officia, rerum illo deserunt nemo ad
-                reiciendis molestiae. Aut fugiat sapiente ex facilis omnis? Est
-                quidem repudiandae sint!
-              </p>
-            </div>
-            <div>
-              <div className="product_title">
-                <p className="product_icon">
-                  <FaRegNewspaper />
-                </p>
-                <h3>Paragraph Summarizer</h3>
-              </div>
-              <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Modi
-                quia sed fuga consectetur corrupti aliquam molestias
-                consequuntur recusandae minus facilis, ducimus distinctio
-                laborum sit sapiente. Modi a blanditiis quia odio.
-              </p>
-            </div>
+            <article className="flex flex-col md:grid md:grid-cols-3 gap-4 mt-[5%]">
+              {homeProducts.map((product) => (
+                <SingleProduct key={product.id} product={product} />
+              ))}
+            </article>
           </section>
         </div>
+
         <div className="mt-[10%]">
           <section>
             <h2 className="main_heading_gradient text-center pb-5">

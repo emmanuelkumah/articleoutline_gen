@@ -1,7 +1,9 @@
-import articleIcon from "../assets/images/articleIcon.png";
-import articleIcon2 from "../assets/images/articleIcon2.png";
-import articleIcon3 from "../assets/images/articleIcon3.png";
-import articleIcon4 from "../assets/images/articleIcon4.png";
+import checklist from "../assets/images/checklist.gif";
+import pen from "../assets/images/fountain-pen.gif";
+import notebook from "../assets/images/notebook.gif";
+import feather from "../assets/images/feather-pen.gif";
+import document from "../assets/images/document.gif";
+import book from "../assets/images/book.gif";
 import chat from "../assets/images/chat.jpg";
 import copy from "../assets/images/copy.jpg";
 
@@ -19,7 +21,7 @@ export const app_content = [
     heading: "Article Outline",
     content:
       "Generate outline of article in seconds, using our powerful AI outline generator",
-    icon: articleIcon2,
+    icon: checklist,
     url: "app/outline",
   },
   {
@@ -27,7 +29,7 @@ export const app_content = [
     heading: "Grammar Check",
     content:
       "Perfect your English by reviewing your writing for grammar,spelling, and puctuation errors",
-    icon: articleIcon3,
+    icon: pen,
     url: "app/grammar",
   },
   {
@@ -35,7 +37,7 @@ export const app_content = [
     heading: "Aricle Ideas",
     content:
       "Breakthrough writer's block, come up with awesome ideas for your articles",
-    icon: articleIcon,
+    icon: notebook,
     url: "app/ideas",
   },
   {
@@ -43,7 +45,7 @@ export const app_content = [
     heading: "Paragraph Rewrite",
     content:
       "Reword sentences, transform the structure of content whiles keeping the context",
-    icon: articleIcon4,
+    icon: feather,
     url: "app/rewrite",
   },
   {
@@ -51,14 +53,14 @@ export const app_content = [
     heading: "Viral Posts",
     content:
       "Post everyday, attract unique views.Generate virals post for your social media handles",
-    icon: chat,
+    icon: book,
     url: "app/socials",
   },
   {
     id: 6,
     heading: "Promo Copy",
     content: "Write quality promotional copy for your website and emails",
-    icon: copy,
+    icon: document,
     url: "app/copy",
   },
 ];

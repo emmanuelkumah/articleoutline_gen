@@ -19,38 +19,38 @@ const router = createBrowserRouter([
     errorElement: <ErrorPage />,
   },
   {
-    path: "/dashboard",
+    path: "/articleoutline_gen/dashboard",
     element: <Dashboard />,
-    children: [
-      {
-        path: "/dashboard",
-        element: <AppsMains />,
-      },
-      {
-        path: "/dashboard/app/outline",
-        element: <ArticleOutline />,
-      },
-      {
-        path: "/dashboard/app/grammar",
-        element: <Grammar />,
-      },
-      {
-        path: "/dashboard/app/copy",
-        element: <Copy />,
-      },
-      {
-        path: "/dashboard/app/socials",
-        element: <Socials />,
-      },
-      {
-        path: "/dashboard/app/rewrite",
-        element: <Rewrite />,
-      },
-      {
-        path: "/dashboard/app/ideas",
-        element: <Ideas />,
-      },
-    ],
+    // children: [
+    //   {
+    //     path: "/dashboard",
+    //     element: <AppsMains />,
+    //   },
+    //   {
+    //     path: "/dashboard/app/outline",
+    //     element: <ArticleOutline />,
+    //   },
+    //   {
+    //     path: "/dashboard/app/grammar",
+    //     element: <Grammar />,
+    //   },
+    //   {
+    //     path: "/dashboard/app/copy",
+    //     element: <Copy />,
+    //   },
+    //   {
+    //     path: "/dashboard/app/socials",
+    //     element: <Socials />,
+    //   },
+    //   {
+    //     path: "/dashboard/app/rewrite",
+    //     element: <Rewrite />,
+    //   },
+    //   {
+    //     path: "/dashboard/app/ideas",
+    //     element: <Ideas />,
+    //   },
+    // ],
   },
 ]);
 
