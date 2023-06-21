@@ -2,6 +2,7 @@ import React from "react";
 import { assets } from "../utils/images";
 import { homeProducts } from "../utils/productsData";
 import SingleProduct from "./UI/SingleProduct";
+import { Button } from "flowbite-react";
 
 const Main = () => {
   return (
@@ -36,8 +37,11 @@ const Main = () => {
           </section>
 
           <video controls>
-            <source src={assets[4]} type="video/mp4" />
+            <source src={assets[0]} type="video/mp4" />
           </video>
+          <div className="flex justify-center mt-6 cursor-pointer">
+            <Button className="app_button">Try it out for free</Button>
+          </div>
         </div>
       </main>
     </>

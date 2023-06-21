@@ -4,7 +4,6 @@ import "../../src/App.css";
 import { TypeAnimation } from "react-type-animation";
 import img1 from "../assets/images/img-1.svg";
 import img2 from "../assets/images/img-2.svg";
-import img3 from "../assets/images/img-3.svg";
 import marketter from "../assets/images/icon-26.svg";
 import copywriting from "../assets/images/copywriting-1.svg";
 
@@ -65,7 +64,7 @@ const Hero = () => {
         </div>
         <div className="my-10">
           <span className="text-3xl text-center capitalize md:text-4xl">
-            Ecrit helps you{" "}
+            Écrire helps you{" "}
           </span>
           <span className="typewriter_gradient">
             <TypeAnimation
