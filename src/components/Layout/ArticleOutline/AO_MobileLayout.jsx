@@ -18,7 +18,7 @@ const AO_MobileLayout = () => {
           <OutlineContainer />
         </section>
       ) : (
-        <section className="w-[100%] border border-slate-500">
+        <section className="w-[100%] border rounded-md border-cyan-900">
           <Form />
         </section>
       )}

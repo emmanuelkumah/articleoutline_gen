@@ -6,10 +6,10 @@ const AO_WebLayout = () => {
   return (
     <div>
       <div className="flex">
-        <section className="w-[40%] border border-slate-400 rounded-lg">
+        <section className="w-[40%] border border-slate-400 rounded-lg mt-[10%]">
           <Form />
         </section>
-        <section className="w-[60%]">
+        <section className="w-[60%] mt-[10%]">
           <OutlineContainer />
         </section>
       </div>

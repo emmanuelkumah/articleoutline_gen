@@ -118,7 +118,7 @@
   @apply bg-gradient-to-r from-orange-600 via-amber-300 to-red-600 bg-clip-text text-transparent text-3xl text-center capitalize mb-7 font-thin font-poppins;
 }
 .input_text {
-  @apply w-full bg-transparent border border-emerald-400 rounded-xl p-3 focus:outline-none;
+  @apply w-full bg-transparent border border-cyan-900 rounded-xl p-3 focus:outline-none;
 }
 .app_button {
   @apply bg-gradient-to-r from-emerald-500 to-purple-700 rounded-full hover:from-purple-500 hover:to-blue-500  my-9 font-poppins font-bold text-3xl text-white px-5 py-2 animate-bounce;

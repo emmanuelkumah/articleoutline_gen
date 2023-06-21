@@ -1,5 +1,6 @@
 import React from "react";
 import { HiMenuAlt3 } from "react-icons/hi";
+import logo from "../../assets/images/ecrire2.png";
 
 import { Link } from "react-router-dom";
 import { menus } from "../../utils/dashboard-data";
@@ -8,7 +9,7 @@ const LeftSidebar = ({ openSidebar, setOpenSidebar }) => {
   return (
     <>
       <div
-        className={`bg-[#0e0e0e] min-h-screen ${
+        className={`bg-cyan-900 min-h-screen ${
           openSidebar ? "w-72" : "w-16"
         } duration-500 text-gray-100 px-4`}
       >
@@ -19,7 +20,9 @@ const LeftSidebar = ({ openSidebar, setOpenSidebar }) => {
             onClick={() => setOpenSidebar(!openSidebar)}
           />
         </div>
-        <div>Ecrit</div>
+        <div>
+          <img src={logo} alt="logo" />
+        </div>
         <div className="mt-4 flex flex-col gap-4 relative">
           {menus?.map((menu, i) => (
             <Link

@@ -14,9 +14,11 @@ const Dashboard = () => {
       </div>
 
       <div className="overflow-y">
-        {/* all other elements*/}
-
-        <div className={`${openSidebar ? "md:ml-[20%]" : "ml-[10%]"}`}>
+        <div
+          className={`relative top-8 ${
+            openSidebar ? "md:ml-[20%]" : "ml-[10%]"
+          }`}
+        >
           <Outlet />
         </div>
       </div>

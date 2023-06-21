@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import Layout from "../components/Layout/Layout";
 import SelectLang from "../components/UI/SelectLang";
 import { Configuration, OpenAIApi } from "openai";
 import toast, { Toaster } from "react-hot-toast";
@@ -142,9 +141,7 @@ const ArticleOutline = () => {
 
   return (
     <>
-      <Layout>
-        <ArticleOutlineScreen />
-      </Layout>
+      <ArticleOutlineScreen />
     </>
   );
 };
