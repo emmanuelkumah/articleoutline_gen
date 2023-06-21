@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import AO_MobileLayout from "./AO_MobileLayout";
 import AO_WebLayout from "./AO_WebLayout";
 import { FormOptionsContext } from "../../../Context/Context";
+import { fetchData } from "../../../api/openai";
 
 const AO_Home = () => {
   const [formFields, setFormFields] = useState({
@@ -13,6 +14,7 @@ const AO_Home = () => {
   const [showOptions, setShowOptions] = useState(false);
   const [switchView, setSwitchView] = useState(false);
   const [charCount, setCharCount] = useState(0);
+  const [showResponse, setShowResponse] = useState("");
 
   const handleTopicInput = (e) => {
     const topic = e.target.value;
@@ -38,18 +40,20 @@ const AO_Home = () => {
   const handleFormSubmission = (e) => {
     e.preventDefault();
 
-    console.log(
-      formFields.topic,
-      formFields.keyword,
-      formFields.language,
-      formFields.numResults
-    );
+    const data = {
+      topic: formFields.topic,
+      keyword: formFields.keyword,
+      language: formFields.language,
+      number: formFields.numResults,
+    };
+    //push form data
+    // fetchFormData(data);
+    fetchData(data);
     //clear forms
     setFormFields({
       ...formFields,
       topic: "",
       keyword: "",
-      
     });
   };
 
@@ -67,6 +71,8 @@ const AO_Home = () => {
         handleFormSubmission,
         handleLanguageSelection,
         handleNumResultsInput,
+        setShowResponse,
+        showResponse,
       }}
     >
       <div className="md:hidden">

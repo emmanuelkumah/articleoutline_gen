@@ -53,6 +53,7 @@ const ArticleOutline = () => {
       numResults: articleDetails.numResults,
     };
     console.log(formData);
+    fetchFormData(formData);
     //clear inputs
     setArticleDetails({
       ...articleDetails,
