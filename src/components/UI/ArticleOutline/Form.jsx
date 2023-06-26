@@ -11,6 +11,7 @@ const Form = ({}) => {
     formFields,
     handleTopicInput,
     handleKeywordInput,
+    handleKeyDown,
     handleFormSubmission,
   } = useContext(FormOptionsContext);
 
@@ -19,7 +20,11 @@ const Form = ({}) => {
 
   return (
     <div>
-      <form className="px-4 py-6" onSubmit={handleFormSubmission}>
+      <h2 className="sub_heading_gradient">AI Article Outline</h2>
+      <form
+        className="w-[100%] border rounded-md border-cyan-900 px-4 py-6"
+        onSubmit={handleFormSubmission}
+      >
         <div>
           <div className="flex justify-between mb-3">
             <label htmlFor="articleTitle">Article Title</label>
@@ -37,6 +42,7 @@ const Form = ({}) => {
             required
             value={topic}
             onChange={handleTopicInput}
+            onKeyDown={handleKeyDown}
             maxLength={200}
           />
         </div>

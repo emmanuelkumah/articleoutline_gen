@@ -17,7 +17,7 @@ const ArticleDetails = ({ outline }) => {
   return (
     <>
       <section>
-        <h2 className="text-2xl mt-9">Here you go, your outline is ready !</h2>
+        <h2 className="text-2xl mt-9">Here you go, your outline is ready!</h2>
         <div className="flex overflow-y-auto">
           <article className="flex gap-8 w-[320px] bg-indigo-100 rounded md:w-full px-9 ">
             {outline}

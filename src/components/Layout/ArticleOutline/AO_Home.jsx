@@ -3,6 +3,7 @@ import AO_MobileLayout from "./AO_MobileLayout";
 import AO_WebLayout from "./AO_WebLayout";
 import { FormOptionsContext } from "../../../Context/Context";
 import { fetchData } from "../../../api/openai";
+import toast, { Toaster } from "react-hot-toast";
 
 const AO_Home = () => {
   const [formFields, setFormFields] = useState({
@@ -16,11 +17,32 @@ const AO_Home = () => {
   const [charCount, setCharCount] = useState(0);
   const [showResponse, setShowResponse] = useState("");
 
+  const verifyTopicInputLength = (topicInput) => {
+    if (topicInput.length < 5) {
+      toast.error("Topic should be more than 5 characters");
+      setFormFields({ ...formFields, topic });
+    }
+  };
+  const resetCharCount = () => {
+    setCharCount(0);
+  };
+
   const handleTopicInput = (e) => {
     const topic = e.target.value;
     setFormFields({ ...formFields, topic });
-    setCharCount((charCount) => charCount + 1);
   };
+
+  const handleKeyDown = (e) => {
+    if (e.key === "Backspace" || e.key === "Delete") {
+      setCharCount((charCount) => charCount - 1);
+      if (e.target.value < 1) {
+        resetCharCount();
+      }
+    } else {
+      setCharCount((charCount) => charCount + 1);
+    }
+  };
+
   const handleKeywordInput = (e) => {
     const keyword = e.target.value;
     setFormFields({ ...formFields, keyword });
@@ -39,7 +61,7 @@ const AO_Home = () => {
   //handle form submission
   const handleFormSubmission = (e) => {
     e.preventDefault();
-
+    verifyTopicInputLength(formFields.topic);
     const data = {
       topic: formFields.topic,
       keyword: formFields.keyword,
@@ -48,7 +70,7 @@ const AO_Home = () => {
     };
     //push form data
     // fetchFormData(data);
-    fetchData(data);
+    // fetchData(data);
     //clear forms
     setFormFields({
       ...formFields,
@@ -68,6 +90,7 @@ const AO_Home = () => {
         formFields,
         handleTopicInput,
         handleKeywordInput,
+        handleKeyDown,
         handleFormSubmission,
         handleLanguageSelection,
         handleNumResultsInput,
@@ -76,6 +99,9 @@ const AO_Home = () => {
       }}
     >
       <div className="md:hidden">
+        <div>
+          <Toaster position="top-center" />
+        </div>
         <AO_MobileLayout
           showOptions={showOptions}
           setShowOptions={setShowOptions}
