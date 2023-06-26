@@ -138,6 +138,7 @@ const AO_Home = () => {
         n: 2,
       });
       // console.log(result.data.choices[0].text.trim());
+      console.log(result.data.choices[0].text);
       const openAiResult = result.data.choices[0].text.trim();
       setHasResponse(true);
       setLoading(false);
