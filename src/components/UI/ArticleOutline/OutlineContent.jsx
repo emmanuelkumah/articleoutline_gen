@@ -1,14 +1,17 @@
-import React from "react";
+import React, { useContext } from "react";
 import CopyToClip from "./CopyToClip";
+import { FormOptionsContext } from "../../../Context/Context";
+FormOptionsContext;
 
-const OutlineContent = ({ content }) => {
+const OutlineContent = () => {
+  const { showResponse } = useContext(FormOptionsContext);
   return (
     <>
       <section className="pl-7 pt-10 overflow-y-scroll">
-        <article className="flex flex-col flex-wrap justify-center py-[3%] text-slate-900 text-2xl whitespace-pre-line font-satoshi">
-          {content}
+        <article className="flex flex-col flex-wrap justify-center py-[3%] text-slate-100 text-2xl whitespace-pre-line font-satoshi">
+          {showResponse}
         </article>
-        <CopyToClip content={content} />
+        <CopyToClip />
       </section>
     </>
   );

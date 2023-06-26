@@ -1,15 +1,18 @@
-import React from "react";
+import React, { useContext } from "react";
 import { ReactComponent as Loader } from "../../../assets/loader.svg";
 import OutlinePlaceholder from "./OutlinePlaceholder";
 import OutlineContent from "./OutlineContent";
+import { FormOptionsContext } from "../../../Context/Context";
 
-const OutlineContainer = ({ content, loading, hasResponse }) => {
+const OutlineContainer = () => {
+  const { hasResponse, loading } = useContext(FormOptionsContext);
+
   return (
     <>
       {loading ? (
         <Loader />
       ) : hasResponse ? (
-        <OutlineContent content={content} />
+        <OutlineContent />
       ) : (
         <OutlinePlaceholder
           heading="Let's start generating content"
