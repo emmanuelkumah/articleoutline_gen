@@ -10,14 +10,16 @@ const AO_Container = () => {
   return (
     <>
       {loading ? (
-        <Loader />
+        <div className="flex justify-center items-center">
+          <Loader />
+        </div>
       ) : hasResponse ? (
         <AO_Response />
       ) : (
         <AO_Placeholder
           heading="Let's start generating content"
           subHeading="Everytime you click on the 'Generate' button, our AI goes to work to
-        fetch the desired response"
+        fetch the desired result"
         />
       )}
     </>

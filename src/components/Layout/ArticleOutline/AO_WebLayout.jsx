@@ -1,16 +1,16 @@
 import React from "react";
 import Form from "../../UI/ArticleOutline/Form";
-import OutlineContainer from "../../UI/ArticleOutline/AO_Container";
+import AO_Container from "../../UI/ArticleOutline/AO_Container";
 
 const AO_WebLayout = () => {
   return (
     <div>
-      <div className="flex">
-        <section className="w-[40%] border border-slate-400 rounded-lg mt-[10%]">
+      <div className="flex justify-around">
+        <section className="w-[40%]">
           <Form />
         </section>
-        <section className="w-[60%] mt-[10%]">
-          <OutlineContainer />
+        <section className="w-[40%]">
+          <AO_Container />
         </section>
       </div>
     </div>

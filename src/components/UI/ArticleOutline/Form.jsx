@@ -3,6 +3,7 @@ import { FormOptionsContext } from "../../../Context/Context";
 import SelectLang from "../SelectLang";
 import Toggle from "../Toggle";
 import SelectNumResults from "./SelectNumResults";
+import AO_StartNew from "./AO_StartNew";
 
 const Form = ({}) => {
   const {
@@ -13,6 +14,7 @@ const Form = ({}) => {
     handleKeywordInput,
     handleKeyDown,
     handleFormSubmission,
+    hasResponse,
   } = useContext(FormOptionsContext);
 
   //destructuring fields
@@ -70,6 +72,7 @@ const Form = ({}) => {
 
         <button className="button_cta">Generate</button>
       </form>
+      {hasResponse ? <AO_StartNew /> : ""}
     </div>
   );
 };

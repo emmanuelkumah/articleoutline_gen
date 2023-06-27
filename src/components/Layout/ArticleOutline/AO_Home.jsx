@@ -19,13 +19,16 @@ const AO_Home = () => {
   const [loading, setLoading] = useState(false);
   const [showResponse, setShowResponse] = useState("");
   const [copied, setCopied] = useState(false);
+  const [startNew, setStartNew] = useState(false);
 
   const verifyTopicInputLength = (topic) => {
     if (topic.length < 5) {
       toast.error("Topic should be more than 5 characters");
-      setFormFields({ ...formFields, topic });
+      console.log(topic);
+      setFormFields({ ...formFields, topic: topic });
     }
   };
+
   const resetCharCount = () => {
     setCharCount(0);
   };
@@ -69,6 +72,11 @@ const AO_Home = () => {
 
   const copyToClipboardMsg = () => {
     toast.success("Content successfully copied to clipboard");
+  };
+  //handle reset of result
+
+  const handleResetResponse = () => {
+    setHasResponse(false);
   };
 
   //handle form submission
@@ -173,6 +181,7 @@ const AO_Home = () => {
         handleFormSubmission,
         handleLanguageSelection,
         handleNumResultsInput,
+        handleResetResponse,
         handleCopyToClip,
         setShowResponse,
         showResponse,
@@ -190,6 +199,9 @@ const AO_Home = () => {
         />
       </div>
       <div className="hidden md:block">
+        {/* <div>
+          <Toaster position="top-center" />
+        </div> */}
         <AO_WebLayout />
       </div>
     </FormOptionsContext.Provider>

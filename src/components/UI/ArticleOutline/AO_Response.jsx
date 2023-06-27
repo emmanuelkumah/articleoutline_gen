@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useContext } from "react";
 import { CopyToClipboard } from "react-copy-to-clipboard";
 import { AiFillDislike, AiFillLike, AiOutlineCopy } from "react-icons/ai";
 import { FormOptionsContext } from "../../../Context/Context";
@@ -12,7 +12,7 @@ const AO_Response = () => {
 
   return (
     <>
-      <section className="pl-7 pt-10 overflow-y-scroll">
+      <section className="pl-7 pt-10 md:p-0 overflow-y-scroll">
         <article className="flex flex-col flex-wrap justify-center py-[3%] text-slate-100 text-2xl whitespace-pre-line font-satoshi">
           {/* {showResponse} */}
           <section className="transition-colors duration-0 border border-slate-300 mb-10 rounded-lg shadow-lg p-6 cursor-pointer hover:transition-colors hover:duration-500 hover:border-teal-500  hover:shadow-indigo-500">
