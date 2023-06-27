@@ -1,10 +1,10 @@
 import React, { useContext } from "react";
 import { ReactComponent as Loader } from "../../../assets/loader.svg";
-import OutlinePlaceholder from "./OutlinePlaceholder";
-import OutlineContent from "./OutlineContent";
 import { FormOptionsContext } from "../../../Context/Context";
+import AO_Response from "./AO_Response";
+import AO_Placeholder from "./AO_Placeholder";
 
-const OutlineContainer = () => {
+const AO_Container = () => {
   const { hasResponse, loading } = useContext(FormOptionsContext);
 
   return (
@@ -12,9 +12,9 @@ const OutlineContainer = () => {
       {loading ? (
         <Loader />
       ) : hasResponse ? (
-        <OutlineContent />
+        <AO_Response />
       ) : (
-        <OutlinePlaceholder
+        <AO_Placeholder
           heading="Let's start generating content"
           subHeading="Everytime you click on the 'Generate' button, our AI goes to work to
         fetch the desired response"
@@ -24,4 +24,4 @@ const OutlineContainer = () => {
   );
 };
 
-export default OutlineContainer;
+export default AO_Container;

@@ -3,7 +3,7 @@ import React, { useContext } from "react";
 import { FormOptionsContext } from "../../../Context/Context";
 FormOptionsContext;
 
-const OutlineContent = () => {
+const AO_Response = () => {
   const { showResponse } = useContext(FormOptionsContext);
   const delimiter = "\n\n"; // Replace with your desired delimiter
 
@@ -31,4 +31,4 @@ const OutlineContent = () => {
   );
 };
 
-export default OutlineContent;
+export default AO_Response;

@@ -1,7 +1,7 @@
 import React from "react";
 import swing from "../../../assets/images/swing.gif";
 
-const OutlinePlaceholder = ({ heading, subHeading }) => {
+const AO_Placeholder = ({ heading, subHeading }) => {
   return (
     <>
       <section className="flex flex-col px-4 py-3 justify-center items-center">
@@ -19,4 +19,4 @@ const OutlinePlaceholder = ({ heading, subHeading }) => {
   );
 };
 
-export default OutlinePlaceholder;
+export default AO_Placeholder;

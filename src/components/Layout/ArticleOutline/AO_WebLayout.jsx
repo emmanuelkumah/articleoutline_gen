@@ -1,6 +1,6 @@
 import React from "react";
 import Form from "../../UI/ArticleOutline/Form";
-import OutlineContainer from "../../UI/ArticleOutline/OutlineContainer";
+import OutlineContainer from "../../UI/ArticleOutline/AO_Container";
 
 const AO_WebLayout = () => {
   return (
