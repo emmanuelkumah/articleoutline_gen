@@ -1,7 +1,6 @@
-import React, { useContext } from "react";
+import React, { useState, useContext } from "react";
 import { CopyToClipboard } from "react-copy-to-clipboard";
 import { AiFillDislike, AiFillLike, AiOutlineCopy } from "react-icons/ai";
-
 import { FormOptionsContext } from "../../../Context/Context";
 FormOptionsContext;
 
@@ -19,29 +18,39 @@ const AO_Response = () => {
           <section className="transition-colors duration-0 border border-slate-300 mb-10 rounded-lg shadow-lg p-6 cursor-pointer hover:transition-colors hover:duration-500 hover:border-teal-500  hover:shadow-indigo-500">
             <h2>{responseSections[0]}</h2>
             <p className="text-xl pt-7">{responseSections[1]}</p>
-            <div>
-              <CopyToClipboard
-                text={responseSections[1]}
-                onCopy={handleCopyToClip}
-              >
-                <AiOutlineCopy />
-              </CopyToClipboard>
-            </div>
-          </section>
-          <section className="transition-colors duration-0 border border-slate-300 mb-10 rounded-lg shadow-lg p-6 cursor-pointer hover:transition-colors hover:duration-500 hover:border-teal-500  hover:shadow-indigo-500">
-            <h2>{responseSections[2]}</h2>
-            <p className="text-xl pt-7">{responseSections[3]}</p>
+            {/* Interactive elements */}
             <div className="flex justify-evenly mt-[10%]">
               <CopyToClipboard
+                className="text-slate-200 hover:text-teal-500"
                 text={responseSections[3]}
                 onCopy={handleCopyToClip}
               >
                 <AiOutlineCopy />
               </CopyToClipboard>
-              <AiFillLike />
-              <AiFillDislike />
+
+              <AiFillLike className="text-slate-200 hover:text-teal-500" />
+
+              <AiFillDislike className="text-slate-200 hover:text-teal-500" />
             </div>
           </section>
+          {responseSections[2] && (
+            <section className="transition-colors duration-0 border border-slate-300 mb-10 rounded-lg shadow-lg p-6 cursor-pointer hover:transition-colors hover:duration-500 hover:border-teal-500  hover:shadow-indigo-500">
+              <h2>{responseSections[2]}</h2>
+              <p className="text-xl pt-7">{responseSections[3]}</p>
+              {/* Interactive elements */}
+              <div className="flex justify-evenly mt-[10%]">
+                <CopyToClipboard
+                  className="text-slate-200 hover:text-teal-500"
+                  text={responseSections[3]}
+                  onCopy={handleCopyToClip}
+                >
+                  <AiOutlineCopy />
+                </CopyToClipboard>
+                <AiFillLike className="text-slate-200 hover:text-teal-500" />
+                <AiFillDislike className="text-slate-200 hover:text-teal-500" />
+              </div>
+            </section>
+          )}
         </article>
       </section>
     </>

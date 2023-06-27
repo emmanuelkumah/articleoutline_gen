@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import AO_MobileLayout from "./AO_MobileLayout";
 import AO_WebLayout from "./AO_WebLayout";
 import { FormOptionsContext } from "../../../Context/Context";
-//import { fetchData } from "../../../api/openai";
 import toast, { Toaster } from "react-hot-toast";
 import { openai } from "../../../api/openai";
 
