@@ -19,6 +19,7 @@ const AO_Home = () => {
   const [hasResponse, setHasResponse] = useState(false);
   const [loading, setLoading] = useState(false);
   const [showResponse, setShowResponse] = useState("");
+  const [copied, setCopied] = useState(false);
 
   const verifyTopicInputLength = (topic) => {
     if (topic.length < 5) {
@@ -61,6 +62,16 @@ const AO_Home = () => {
     setFormFields({ ...formFields, numResults });
   };
 
+  //copy to clipboard
+  const handleCopyToClip = () => {
+    setCopied(true);
+    copyToClipboardMsg();
+  };
+
+  const copyToClipboardMsg = () => {
+    toast.success("Content successfully copied to clipboard");
+  };
+
   //handle form submission
   const handleFormSubmission = (e) => {
     e.preventDefault();
@@ -72,8 +83,8 @@ const AO_Home = () => {
       language: formFields.language,
       number: formFields.numResults,
     };
-
-    fetchData(data);
+    //send data to openai
+    generateResponse(data);
     //show loader
     setLoading(true);
     //clear forms
@@ -84,32 +95,32 @@ const AO_Home = () => {
     });
   };
 
-  //fetchDAta
-  async function fetchData(input) {
+  //fetch response
+  async function generateResponse(input) {
     try {
       const result = await openai.createCompletion({
         model: "text-davinci-003",
 
         prompt: `Write ${input.number} article outlines in the selected language, and write each outline on a new line
-        ### 
+        ###
         caption: Outline on how to build a successful career
         keyword: Career development
         langauge: English
         tone: Professional
         results: 2
-        outline: 
-        
+        outline:
+
         Tips on building a successful career
 
         1. Overview
         2. Identify your goals
         3. Keep track of progress
-        4. Make a plan 
-        5. Stay positive 
-        6. Reflect often 
+        4. Make a plan
+        5. Stay positive
+        6. Reflect often
         7. Network effectively
-        8. Know your strengths. 
-        9. Practice minfulness 
+        8. Know your strengths.
+        9. Practice minfulness
         10. Conclusion
 
         Strategies  on building a successful career
@@ -118,11 +129,11 @@ const AO_Home = () => {
         2. Have a clear vision
         3. Set career goals
         4. Develop the skills, attitude and competence
-        5. Find a mentor 
+        5. Find a mentor
         6. Build professional networks
         7. Read and study anything related to your career path
         8. Sieze opportunities to expand yourself
-        9. Conclusion 
+        9. Conclusion
         ###
          caption: ${input.topic}
          language: ${input.language}
@@ -143,10 +154,6 @@ const AO_Home = () => {
       setHasResponse(true);
       setLoading(false);
       setShowResponse(openAiResult);
-      // setShowResponse([...showResponse, { id: 2, content: openAiResult }]);
-      // // send data to DB
-      // console.log(response);
-      // setContent(response);
     } catch (error) {
       console.log(error);
     }
@@ -167,6 +174,7 @@ const AO_Home = () => {
         handleFormSubmission,
         handleLanguageSelection,
         handleNumResultsInput,
+        handleCopyToClip,
         setShowResponse,
         showResponse,
         hasResponse,
