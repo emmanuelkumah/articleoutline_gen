@@ -20,8 +20,8 @@ const AO_Home = () => {
   const [loading, setLoading] = useState(false);
   const [showResponse, setShowResponse] = useState("");
 
-  const verifyTopicInputLength = (topicInput) => {
-    if (topicInput.length < 5) {
+  const verifyTopicInputLength = (topic) => {
+    if (topic.length < 5) {
       toast.error("Topic should be more than 5 characters");
       setFormFields({ ...formFields, topic });
     }
