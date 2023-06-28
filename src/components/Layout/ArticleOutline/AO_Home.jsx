@@ -4,6 +4,10 @@ import AO_WebLayout from "./AO_WebLayout";
 import { FormOptionsContext } from "../../../Context/Context";
 import toast, { Toaster } from "react-hot-toast";
 import { openai } from "../../../api/openai";
+import { database } from "../../../api/firebase";
+import { set, ref } from "firebase/database";
+// import { Database } from "firebase/database";
+//import { database } from "../../../api/firebase";
 
 const AO_Home = () => {
   const [formFields, setFormFields] = useState({
@@ -78,6 +82,20 @@ const AO_Home = () => {
   const handleResetResponse = () => {
     setHasResponse(false);
   };
+
+  //write to database
+  function writeOutlineData() {
+    // const db = getDatabase();
+    set(ref(database, "response"), {
+      details: showResponse,
+    });
+    // const ref = database.ref("ecrire");
+    // const outlineRef = ref.child("outline");
+    // outlineRef.set({
+    //   result: "Testing",
+    // });
+  }
+  writeOutlineData();
 
   //handle form submission
   const handleFormSubmission = (e) => {
@@ -155,11 +173,12 @@ const AO_Home = () => {
         presence_penalty: 0,
         n: 2,
       });
-      // console.log(result.data.choices[0].text.trim());
-      console.log(result.data.choices[0].text);
+
       const openAiResult = result.data.choices[0].text.trim();
+      console.log(openAiResult);
       setHasResponse(true);
       setLoading(false);
+      //push response to db
       setShowResponse(openAiResult);
     } catch (error) {
       console.log(error);
