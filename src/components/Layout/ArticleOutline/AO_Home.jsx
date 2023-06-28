@@ -6,8 +6,6 @@ import toast, { Toaster } from "react-hot-toast";
 import { openai } from "../../../api/openai";
 import { database } from "../../../api/firebase";
 import { set, ref } from "firebase/database";
-// import { Database } from "firebase/database";
-//import { database } from "../../../api/firebase";
 
 const AO_Home = () => {
   const [formFields, setFormFields] = useState({
@@ -89,11 +87,6 @@ const AO_Home = () => {
     set(ref(database, "response"), {
       details: showResponse,
     });
-    // const ref = database.ref("ecrire");
-    // const outlineRef = ref.child("outline");
-    // outlineRef.set({
-    //   result: "Testing",
-    // });
   }
   writeOutlineData();
 
