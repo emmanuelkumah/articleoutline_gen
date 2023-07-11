@@ -27,10 +27,11 @@ const AO_Home = () => {
   //Fetch data from Database on render
   useEffect(() => {
     readData();
-  }, []);
+  }, [hasResponse]);
 
   //write user data to DB
   function writeOutlineData(data) {
+    setHasResponse(true);
     set(ref(database, "response"), {
       details: data,
     });
@@ -191,7 +192,7 @@ const AO_Home = () => {
       });
 
       const openAiResult = result.data.choices[0].text.trim();
-      setHasResponse(true);
+      // setHasResponse(true);
       setLoading(false);
       //push response to db
       writeOutlineData(openAiResult);
