@@ -1,11 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import AO_MobileLayout from "./AO_MobileLayout";
 import AO_WebLayout from "./AO_WebLayout";
 import { FormOptionsContext } from "../../../Context/Context";
 import toast, { Toaster } from "react-hot-toast";
 import { openai } from "../../../api/openai";
 import { database } from "../../../api/firebase";
-import { set, ref } from "firebase/database";
+import { set, ref, get } from "firebase/database";
 
 const AO_Home = () => {
   const [formFields, setFormFields] = useState({
@@ -22,6 +22,38 @@ const AO_Home = () => {
   const [showResponse, setShowResponse] = useState("");
   const [copied, setCopied] = useState(false);
   const [startNew, setStartNew] = useState(false);
+  const [fetchData, setFetchData] = useState("Hi");
+
+  //Fetch data from Database on render
+  useEffect(() => {
+    readData();
+  }, []);
+
+  //write user data to DB
+  function writeOutlineData(data) {
+    set(ref(database, "response"), {
+      details: data,
+    });
+  }
+
+  //read from database
+  // const readOutlineData = () => {
+  //   const detailsRef = ref(database, "response/details");
+  //   onValue(detailsRef, (snapshot) => {
+  //     const data = snapshot.val();
+  //     console.log(data);
+
+  //     setFetchData(data);
+  //   });
+  // };
+  // readOutlineData();
+
+  async function readData() {
+    const snapshot = await get(ref(database, "response"));
+    const data = snapshot.val();
+    console.log(data);
+    setShowResponse(data);
+  }
 
   const verifyTopicInputLength = (topic) => {
     if (topic.length < 5) {
@@ -80,15 +112,6 @@ const AO_Home = () => {
   const handleResetResponse = () => {
     setHasResponse(false);
   };
-
-  //write to database
-  function writeOutlineData() {
-    // const db = getDatabase();
-    set(ref(database, "response"), {
-      details: showResponse,
-    });
-  }
-  writeOutlineData();
 
   //handle form submission
   const handleFormSubmission = (e) => {
@@ -168,11 +191,12 @@ const AO_Home = () => {
       });
 
       const openAiResult = result.data.choices[0].text.trim();
-      console.log(openAiResult);
       setHasResponse(true);
       setLoading(false);
       //push response to db
-      setShowResponse(openAiResult);
+      writeOutlineData(openAiResult);
+
+      //setShowResponse(openAiResult);
     } catch (error) {
       console.log(error);
     }
