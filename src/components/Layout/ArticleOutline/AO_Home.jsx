@@ -22,19 +22,18 @@ const AO_Home = () => {
   const [showResponse, setShowResponse] = useState("");
   const [copied, setCopied] = useState(false);
   const [startNew, setStartNew] = useState(false);
-  const [fetchData, setFetchData] = useState("Hi");
+  const [fetchData, setFetchData] = useState("");
   const [isSubmited, setIsSubmited] = useState(false);
   const [formData, setFormData] = useState("");
 
   //Fetch data from Database on render
   useEffect(() => {
     //connect to OpenAI
-    generateResponse(formData);
-  }, [loading]);
+    fetchOpenAIData(formData);
+  }, [isSubmited]);
 
   //write user data to DB
-  function writeOutlineData(data) {
-    setHasResponse(true);
+  function writeToDatabase(data) {
     set(ref(database, "response"), {
       details: data,
     });
@@ -128,14 +127,11 @@ const AO_Home = () => {
       language: formFields.language,
       number: formFields.numResults,
     };
-    //is formSubmitted
-    setIsSubmited(true);
-
-    //get form data
     setFormData(data);
-
-    //show loading state
     setLoading(true);
+
+    setIsSubmited(true);
+    //show loading state
 
     //send data to openai
     // generateResponse(data);
@@ -149,12 +145,12 @@ const AO_Home = () => {
   };
 
   //fetch response
-  async function generateResponse(input) {
+  async function fetchOpenAIData(data) {
     try {
       const result = await openai.createCompletion({
         model: "text-davinci-003",
 
-        prompt: `Write ${input.number} article outlines in the selected language, and write each outline on a new line
+        prompt: `Write ${data.number} article outlines in the selected language, and write each outline on a new line
         ###
         caption: Outline on how to build a successful career
         keyword: Career development
@@ -188,10 +184,10 @@ const AO_Home = () => {
         8. Sieze opportunities to expand yourself
         9. Conclusion
         ###
-         caption: ${input.topic}
-         language: ${input.language}
-         keyword: ${input.keyword}
-         results: ${input.number}
+         caption: ${data.topic}
+         language: ${data.language}
+         keyword: ${data.keyword}
+         results: ${data.number}
          outline:
         `,
         temperature: 0.5,
@@ -201,16 +197,21 @@ const AO_Home = () => {
         presence_penalty: 0,
         n: 2,
       });
-      setLoading(false);
 
       const openAiResult = result.data.choices[0].text.trim();
       console.log(openAiResult);
+      if (openAiResult) {
+        setLoading(false);
+        setHasResponse(true);
+      }
+
       // setHasResponse(true);
 
       //push response to database
-      //writeOutlineData(openAiResult);
+      writeToDatabase(openAiResult);
 
-      //setShowResponse(openAiResult);
+      //read from database
+      readData();
     } catch (error) {
       console.log(error);
     }
