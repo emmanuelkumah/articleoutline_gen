@@ -23,11 +23,14 @@ const AO_Home = () => {
   const [copied, setCopied] = useState(false);
   const [startNew, setStartNew] = useState(false);
   const [fetchData, setFetchData] = useState("Hi");
+  const [isSubmited, setIsSubmited] = useState(false);
+  const [formData, setFormData] = useState("");
 
   //Fetch data from Database on render
   useEffect(() => {
-    readData();
-  }, [hasResponse]);
+    //connect to OpenAI
+    generateResponse(formData);
+  }, [loading]);
 
   //write user data to DB
   function writeOutlineData(data) {
@@ -125,10 +128,18 @@ const AO_Home = () => {
       language: formFields.language,
       number: formFields.numResults,
     };
-    //send data to openai
-    generateResponse(data);
-    //show loader
+    //is formSubmitted
+    setIsSubmited(true);
+
+    //get form data
+    setFormData(data);
+
+    //show loading state
     setLoading(true);
+
+    //send data to openai
+    // generateResponse(data);
+
     //clear forms
     setFormFields({
       ...formFields,
@@ -190,12 +201,14 @@ const AO_Home = () => {
         presence_penalty: 0,
         n: 2,
       });
+      setLoading(false);
 
       const openAiResult = result.data.choices[0].text.trim();
+      console.log(openAiResult);
       // setHasResponse(true);
-      setLoading(false);
-      //push response to db
-      writeOutlineData(openAiResult);
+
+      //push response to database
+      //writeOutlineData(openAiResult);
 
       //setShowResponse(openAiResult);
     } catch (error) {
