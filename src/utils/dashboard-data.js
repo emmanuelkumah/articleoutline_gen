@@ -22,7 +22,7 @@ export const app_content = [
     content:
       "Generate outline of article in seconds, using our powerful AI outline generator",
     icon: checklist,
-    url: "/outline",
+    url: "dashboard/outline",
   },
   {
     id: 2,
