@@ -5,7 +5,7 @@ import { FormOptionsContext } from "../../../Context/Context";
 import toast, { Toaster } from "react-hot-toast";
 import { openai } from "../../../api/openai";
 import { database } from "../../../api/firebase";
-import { set, ref, get } from "firebase/database";
+import { set, ref, onValue } from "firebase/database";
 
 const AO_Home = () => {
   const [formFields, setFormFields] = useState({
@@ -40,23 +40,15 @@ const AO_Home = () => {
   }
 
   //read from database
-  // const readOutlineData = () => {
-  //   const detailsRef = ref(database, "response/details");
-  //   onValue(detailsRef, (snapshot) => {
-  //     const data = snapshot.val();
-  //     console.log(data);
+  const readData = () => {
+    const detailsRef = ref(database, "response");
+    onValue(detailsRef, (snapshot) => {
+      const data = snapshot.val();
+      console.log(data);
+      setShowResponse(data);
+    });
+  };
 
-  //     setFetchData(data);
-  //   });
-  // };
-  // readOutlineData();
-
-  async function readData() {
-    const snapshot = await get(ref(database, "response"));
-    const data = snapshot.val();
-    console.log(data);
-    setShowResponse(data);
-  }
 
   const verifyTopicInputLength = (topic) => {
     if (topic.length < 5) {
