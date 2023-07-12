@@ -3,9 +3,9 @@ import AO_MobileLayout from "./AO_MobileLayout";
 import AO_WebLayout from "./AO_WebLayout";
 import { FormOptionsContext } from "../../../Context/Context";
 import toast, { Toaster } from "react-hot-toast";
-import { openai } from "../../../api/openai";
-import { database } from "../../../api/firebase";
-import { set, ref, onValue } from "firebase/database";
+import { openai } from "../../../services/openai";
+import { collection, getDocs } from "firebase/firestore";
+import { database } from "../../../services/firebase";
 
 const AO_Home = () => {
   const [formFields, setFormFields] = useState({
@@ -22,33 +22,32 @@ const AO_Home = () => {
   const [showResponse, setShowResponse] = useState("");
   const [copied, setCopied] = useState(false);
   const [startNew, setStartNew] = useState(false);
-  const [fetchData, setFetchData] = useState("");
+  const [fetchData, setFetchData] = useState([]);
   const [isSubmited, setIsSubmited] = useState(false);
   const [formData, setFormData] = useState("");
 
   //Fetch data from Database on render
   useEffect(() => {
     //connect to OpenAI
-    fetchOpenAIData(formData);
-  }, [isSubmited]);
-
+    readData();
+  }, []);
+  console.log(fetchData);
   //write user data to DB
-  function writeToDatabase(data) {
-    set(ref(database, "response"), {
-      details: data,
-    });
-  }
+  function writeToDatabase() {}
 
   //read from database
   const readData = () => {
-    const detailsRef = ref(database, "response");
-    onValue(detailsRef, (snapshot) => {
-      const data = snapshot.val();
-      console.log(data);
-      setShowResponse(data);
-    });
+    const outlineCollectionRef = collection(database, "article_outline");
+    getDocs(outlineCollectionRef)
+      .then((response) => {
+        const result = response.docs.map((doc) => ({
+          data: doc.data(),
+          id: doc.id,
+        }));
+        setFetchData(result);
+      })
+      .catch((error) => console.log(error.message));
   };
-
 
   const verifyTopicInputLength = (topic) => {
     if (topic.length < 5) {
@@ -200,10 +199,10 @@ const AO_Home = () => {
       // setHasResponse(true);
 
       //push response to database
-      writeToDatabase(openAiResult);
+      // writeToDatabase(openAiResult);
 
       //read from database
-      readData();
+      // readData();
     } catch (error) {
       console.log(error);
     }
