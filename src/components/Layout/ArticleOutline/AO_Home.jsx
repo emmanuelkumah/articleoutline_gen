@@ -31,7 +31,8 @@ const AO_Home = () => {
     //connect to OpenAI
     readData();
   }, []);
-  console.log(fetchData);
+
+  console.log(showResponse);
   //write user data to DB
   function writeToDatabase() {}
 
@@ -44,7 +45,8 @@ const AO_Home = () => {
           data: doc.data(),
           id: doc.id,
         }));
-        setFetchData(result);
+        setShowResponse(result);
+        setHasResponse(true);
       })
       .catch((error) => console.log(error.message));
   };
