@@ -13,15 +13,7 @@ const AO_Container = () => {
 
   return (
     <>
-      {/* {loading ? (
-        <div className="flex justify-center items-center">
-          <Loader />
-        </div>
-      ) : hasResponse ? (
-        <AO_Response />
-      ) : (
-       
-      )} */}
+     
       {isTyping && (
         <AO_Placeholder
           heading="Let's start generating content"

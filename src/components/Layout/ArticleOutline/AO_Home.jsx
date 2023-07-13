@@ -19,24 +19,17 @@ const AO_Home = () => {
   const [charCount, setCharCount] = useState(0);
   const [status, setStatus] = useState("typing");
   const [hasResponse, setHasResponse] = useState(false);
-  const [loading, setLoading] = useState(false);
+
   const [showResponse, setShowResponse] = useState("");
   const [copied, setCopied] = useState(false);
   const [startNew, setStartNew] = useState(false);
   const [fetchedData, setFetchedData] = useState([]);
-  const [isSubmited, setIsSubmited] = useState(false);
-  const [formData, setFormData] = useState("");
 
-  console.log(status);
-  console.log(fetchedData);
-
-  //Fetch data from Database on render
   useEffect(() => {
-    //connect to OpenAI
     readData();
   }, []);
 
-  //write user data to DB
+  //write data to DB
   function addToDatabase(data) {
     const outlineCollectionRef = collection(database, "article_outline");
     addDoc(outlineCollectionRef, {
@@ -199,17 +192,9 @@ const AO_Home = () => {
       });
 
       const openAiData = result.data.choices[0].text.trim();
-      // setFetchedData(openAiData);
       setStatus("sent");
-      //connect to Database
+      //add data to Database
       addToDatabase(openAiData);
-      // setHasResponse(true);
-
-      //push response to database
-      // writeToDatabase(openAiResult);
-
-      //read from database
-      // readData();
     } catch (error) {
       console.log(error);
     }
