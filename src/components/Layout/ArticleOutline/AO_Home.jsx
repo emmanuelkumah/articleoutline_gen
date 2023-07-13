@@ -31,7 +31,6 @@ const AO_Home = () => {
   const [copied, setCopied] = useState(false);
   const [startNew, setStartNew] = useState(false);
   const [fetchedData, setFetchedData] = useState([]);
-  const [singleFetch, setSingleFetch] = useState("");
 
   useEffect(() => {
     readData();
@@ -58,12 +57,19 @@ const AO_Home = () => {
     try {
       const outlineCollectionRef = collection(database, "article_outline");
 
-      onSnapshot(outlineCollectionRef, (snapshot) => {
-        let articles = [];
-        snapshot.docs.forEach((doc) => {
-          articles.push({ ...doc.data(), id: doc.id });
+      const fetchedQuery = query(
+        outlineCollectionRef,
+        orderBy("outline", "desc"),
+        limit(1)
+      );
+
+      onSnapshot(fetchedQuery, (snapshot) => {
+        const fetched = snapshot?.docs.map((doc) => {
+          return { ...doc.data(), id: doc.id };
         });
-        console.log(articles);
+        console.log(fetched);
+        setFetchedData(fetched);
+        setStatus("received");
       });
     } catch (error) {
       console.log("Error in retrieving document", error);
