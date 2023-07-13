@@ -4,7 +4,7 @@ import AO_WebLayout from "./AO_WebLayout";
 import { FormOptionsContext } from "../../../Context/Context";
 import toast, { Toaster } from "react-hot-toast";
 import { openai } from "../../../services/openai";
-import { collection, getDocs } from "firebase/firestore";
+import { collection, addDoc, getDocs } from "firebase/firestore";
 import { database } from "../../../services/firebase";
 
 const AO_Home = () => {
@@ -23,11 +23,12 @@ const AO_Home = () => {
   const [showResponse, setShowResponse] = useState("");
   const [copied, setCopied] = useState(false);
   const [startNew, setStartNew] = useState(false);
-  const [fetchedData, setFetchedData] = useState("");
+  const [fetchedData, setFetchedData] = useState([]);
   const [isSubmited, setIsSubmited] = useState(false);
   const [formData, setFormData] = useState("");
 
   console.log(status);
+  console.log(fetchedData);
 
   //Fetch data from Database on render
   useEffect(() => {
@@ -36,7 +37,16 @@ const AO_Home = () => {
   }, []);
 
   //write user data to DB
-  function writeToDatabase() {}
+  function addToDatabase(data) {
+    const outlineCollectionRef = collection(database, "article_outline");
+    addDoc(outlineCollectionRef, {
+      outline: data,
+    })
+      .then((response) => {
+        console.log(response.id);
+      })
+      .catch((error) => error.message);
+  }
 
   //read from database
   const readData = () => {
@@ -47,8 +57,8 @@ const AO_Home = () => {
           data: doc.data(),
           id: doc.id,
         }));
-        setShowResponse(result);
-        setHasResponse(true);
+        setFetchedData(result);
+        setStatus("received");
       })
       .catch((error) => console.log(error.message));
   };
@@ -123,6 +133,7 @@ const AO_Home = () => {
       number: formFields.numResults,
     };
     setStatus("sending");
+    //connect to openAI
     fetchOpenAIData(data);
 
     //clear forms
@@ -187,10 +198,11 @@ const AO_Home = () => {
         n: 2,
       });
 
-      const openAiResult = result.data.choices[0].text.trim();
-      setFetchedData(openAiResult);
+      const openAiData = result.data.choices[0].text.trim();
+      // setFetchedData(openAiData);
       setStatus("sent");
-
+      //connect to Database
+      addToDatabase(openAiData);
       // setHasResponse(true);
 
       //push response to database

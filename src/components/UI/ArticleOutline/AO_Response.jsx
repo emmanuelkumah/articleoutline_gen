@@ -13,10 +13,11 @@ const AO_Response = () => {
   //const responseSections = showResponse;
 
   //const responseSections = showResponse.split(delimiter);
-
-  const data = showResponse.map((result) => (
-    <li key={result.id}>{result.data.query}</li>
-  ));
+  console.log(fetchedData);
+  const listResults = fetchedData.map((item) => {
+    const { data, id } = item;
+    return <p key={id}>{data.outline}</p>;
+  });
   return (
     <>
       <section className="pl-7 pt-10 md:p-0 overflow-y-scroll">
@@ -55,7 +56,7 @@ const AO_Response = () => {
               </div>
             </section>
           )} */}
-          <p>{fetchedData}</p>
+          <p>{listResults}</p>
         </article>
       </section>
     </>

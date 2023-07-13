@@ -8,7 +8,7 @@ const AO_Container = () => {
   const { status } = useContext(FormOptionsContext);
 
   const isSending = status === "sending";
-  const hasData = status === "sent";
+  const hasData = status === "received";
   const isTyping = status === "typing";
 
   return (
