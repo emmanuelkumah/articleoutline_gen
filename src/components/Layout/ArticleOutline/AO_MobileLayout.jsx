@@ -5,8 +5,7 @@ import SwitchViews from "../../UI/ArticleOutline/SwitchViews";
 import AO_Container from "../../UI/ArticleOutline/AO_Container";
 
 const AO_MobileLayout = () => {
-  const { showOptions, switchView, setShowOptions, setSwitchView } =
-    useContext(FormOptionsContext);
+  const { switchView, setSwitchView } = useContext(FormOptionsContext);
 
   function handleToggleLayout() {
     setSwitchView(!switchView);

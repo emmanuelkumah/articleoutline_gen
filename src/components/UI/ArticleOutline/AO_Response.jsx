@@ -6,8 +6,7 @@ import { limit } from "firebase/firestore";
 FormOptionsContext;
 
 const AO_Response = () => {
-  const { fetchedData, showResponse, handleCopyToClip } =
-    useContext(FormOptionsContext);
+  const { fetchedData, handleCopyToClip } = useContext(FormOptionsContext);
   //const delimiter = "\n\n";
 
   //const responseSections = showResponse;

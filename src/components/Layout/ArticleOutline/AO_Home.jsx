@@ -217,9 +217,7 @@ const AO_Home = () => {
         handleNumResultsInput,
         handleResetResponse,
         handleCopyToClip,
-        setShowResponse,
-        showResponse,
-        hasResponse,
+
         status,
         fetchedData,
       }}
