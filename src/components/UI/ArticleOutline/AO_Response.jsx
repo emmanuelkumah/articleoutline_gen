@@ -6,7 +6,8 @@ import { limit } from "firebase/firestore";
 FormOptionsContext;
 
 const AO_Response = () => {
-  const { showResponse, handleCopyToClip } = useContext(FormOptionsContext);
+  const { fetchedData, showResponse, handleCopyToClip } =
+    useContext(FormOptionsContext);
   //const delimiter = "\n\n";
 
   //const responseSections = showResponse;
@@ -20,7 +21,6 @@ const AO_Response = () => {
     <>
       <section className="pl-7 pt-10 md:p-0 overflow-y-scroll">
         <article className="flex flex-col flex-wrap justify-center py-[3%] text-slate-100 text-2xl whitespace-pre-line font-satoshi">
-          <ul>{data}</ul>
           {/* <section className="transition-colors duration-0 border border-slate-300 mb-10 rounded-lg shadow-lg p-6 cursor-pointer hover:transition-colors hover:duration-500 hover:border-teal-500  hover:shadow-indigo-500">
             <h2>{responseSections[0]}</h2>
             <p className="text-xl pt-7">{responseSections[1]}</p>
@@ -55,6 +55,7 @@ const AO_Response = () => {
               </div>
             </section>
           )} */}
+          <p>{fetchedData}</p>
         </article>
       </section>
     </>

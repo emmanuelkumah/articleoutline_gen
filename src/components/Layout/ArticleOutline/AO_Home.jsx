@@ -23,11 +23,11 @@ const AO_Home = () => {
   const [showResponse, setShowResponse] = useState("");
   const [copied, setCopied] = useState(false);
   const [startNew, setStartNew] = useState(false);
-  const [fetchData, setFetchData] = useState([]);
+  const [fetchedData, setFetchedData] = useState("");
   const [isSubmited, setIsSubmited] = useState(false);
   const [formData, setFormData] = useState("");
 
-  console.log(status)
+  console.log(status);
 
   //Fetch data from Database on render
   useEffect(() => {
@@ -35,7 +35,6 @@ const AO_Home = () => {
     readData();
   }, []);
 
-  console.log(showResponse);
   //write user data to DB
   function writeToDatabase() {}
 
@@ -124,13 +123,7 @@ const AO_Home = () => {
       number: formFields.numResults,
     };
     setStatus("sending");
-
-    console.log(data);
-
-    // setFormData(data);
-    // setLoading(true);
-
-    // setIsSubmited(true);
+    fetchOpenAIData(data);
 
     //clear forms
     setFormFields({
@@ -195,11 +188,8 @@ const AO_Home = () => {
       });
 
       const openAiResult = result.data.choices[0].text.trim();
-      console.log(openAiResult);
-      if (openAiResult) {
-        setLoading(false);
-        setHasResponse(true);
-      }
+      setFetchedData(openAiResult);
+      setStatus("sent");
 
       // setHasResponse(true);
 
@@ -234,6 +224,7 @@ const AO_Home = () => {
         showResponse,
         hasResponse,
         status,
+        fetchedData,
       }}
     >
       <div className="md:hidden">
