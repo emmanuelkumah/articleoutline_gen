@@ -4,7 +4,14 @@ import AO_WebLayout from "./AO_WebLayout";
 import { FormOptionsContext } from "../../../Context/Context";
 import toast, { Toaster } from "react-hot-toast";
 import { openai } from "../../../services/openai";
-import { collection, addDoc, getDocs } from "firebase/firestore";
+import {
+  collection,
+  addDoc,
+  onSnapshot,
+  query,
+  orderBy,
+  limit,
+} from "firebase/firestore";
 import { database } from "../../../services/firebase";
 
 const AO_Home = () => {
@@ -24,6 +31,7 @@ const AO_Home = () => {
   const [copied, setCopied] = useState(false);
   const [startNew, setStartNew] = useState(false);
   const [fetchedData, setFetchedData] = useState([]);
+  const [singleFetch, setSingleFetch] = useState("");
 
   useEffect(() => {
     readData();
@@ -31,29 +39,46 @@ const AO_Home = () => {
 
   //write data to DB
   function addToDatabase(data) {
-    const outlineCollectionRef = collection(database, "article_outline");
-    addDoc(outlineCollectionRef, {
-      outline: data,
-    })
-      .then((response) => {
-        console.log(response.id);
+    try {
+      const outlineCollectionRef = collection(database, "article_outline");
+      addDoc(outlineCollectionRef, {
+        outline: data,
       })
-      .catch((error) => error.message);
+        .then((response) => {
+          console.log(response.id);
+        })
+        .catch((error) => error.message);
+    } catch (error) {
+      console.error("Error adding document", error);
+    }
   }
 
-  //read from database
+  //realtime subscription to DB
   const readData = () => {
-    const outlineCollectionRef = collection(database, "article_outline");
-    getDocs(outlineCollectionRef)
-      .then((response) => {
-        const result = response.docs.map((doc) => ({
-          data: doc.data(),
-          id: doc.id,
-        }));
-        setFetchedData(result);
-        setStatus("received");
-      })
-      .catch((error) => console.log(error.message));
+    try {
+      const outlineCollectionRef = collection(database, "article_outline");
+
+      onSnapshot(outlineCollectionRef, (snapshot) => {
+        let articles = [];
+        snapshot.docs.forEach((doc) => {
+          articles.push({ ...doc.data(), id: doc.id });
+        });
+        console.log(articles);
+      });
+    } catch (error) {
+      console.log("Error in retrieving document", error);
+    }
+    // const outlineCollectionRef = collection(database, "article_outline");
+    // getDocs(outlineCollectionRef)
+    //   .then((response) => {
+    //     const result = response.docs.map((doc) => ({
+    //       data: doc.data(),
+    //       id: doc.id,
+    //     }));
+    //     setFetchedData(result);
+    //     setStatus("received");
+    //   })
+    //   .catch((error) => console.log(error.message));
   };
 
   const verifyTopicInputLength = (topic) => {

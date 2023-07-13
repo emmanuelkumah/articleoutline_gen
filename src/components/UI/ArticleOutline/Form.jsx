@@ -16,10 +16,12 @@ const Form = ({}) => {
     handleFormSubmission,
     hasResponse,
     loading,
+    status
   } = useContext(FormOptionsContext);
 
   //destructuring fields
   const { topic, keyword } = formFields;
+  const clearResponse = status === "receive"
 
   return (
     <div>
@@ -94,7 +96,7 @@ const Form = ({}) => {
           <button className="button_cta">Generate</button>
         )}
       </form>
-      {hasResponse ? <AO_StartNew /> : ""}
+      {clearResponse && <AO_StartNew /> }
     </div>
   );
 };
