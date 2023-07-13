@@ -5,24 +5,36 @@ import AO_Response from "./AO_Response";
 import AO_Placeholder from "./AO_Placeholder";
 
 const AO_Container = () => {
-  const { hasResponse, loading } = useContext(FormOptionsContext);
+  const { status } = useContext(FormOptionsContext);
+
+  const isSending = status === "sending";
+  const hasData = status === "sent";
+  const isTyping = status === "typing";
 
   return (
     <>
-  
-      {loading ? (
+      {/* {loading ? (
         <div className="flex justify-center items-center">
           <Loader />
         </div>
       ) : hasResponse ? (
         <AO_Response />
       ) : (
+       
+      )} */}
+      {isTyping && (
         <AO_Placeholder
           heading="Let's start generating content"
           subHeading="Everytime you click on the 'Generate' button, our AI goes to work to
         fetch the desired result"
         />
       )}
+      {isSending && (
+        <div className="flex justify-center items-center">
+          <Loader />
+        </div>
+      )}
+      {hasData && <AO_Response />}
     </>
   );
 };

@@ -17,6 +17,7 @@ const AO_Home = () => {
   const [showOptions, setShowOptions] = useState(false);
   const [switchView, setSwitchView] = useState(false);
   const [charCount, setCharCount] = useState(0);
+  const [status, setStatus] = useState("typing");
   const [hasResponse, setHasResponse] = useState(false);
   const [loading, setLoading] = useState(false);
   const [showResponse, setShowResponse] = useState("");
@@ -25,6 +26,8 @@ const AO_Home = () => {
   const [fetchData, setFetchData] = useState([]);
   const [isSubmited, setIsSubmited] = useState(false);
   const [formData, setFormData] = useState("");
+
+  console.log(status)
 
   //Fetch data from Database on render
   useEffect(() => {
@@ -120,14 +123,14 @@ const AO_Home = () => {
       language: formFields.language,
       number: formFields.numResults,
     };
-    setFormData(data);
-    setLoading(true);
+    setStatus("sending");
 
-    setIsSubmited(true);
-    //show loading state
+    console.log(data);
 
-    //send data to openai
-    // generateResponse(data);
+    // setFormData(data);
+    // setLoading(true);
+
+    // setIsSubmited(true);
 
     //clear forms
     setFormFields({
@@ -230,7 +233,7 @@ const AO_Home = () => {
         setShowResponse,
         showResponse,
         hasResponse,
-        loading,
+        status,
       }}
     >
       <div className="md:hidden">
