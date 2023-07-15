@@ -10,16 +10,17 @@ const Form = ({}) => {
     showOptions,
     charCount,
     formFields,
-    handleTopicInput,
-    handleKeywordInput,
     handleKeyDown,
     handleFormSubmission,
+    handleChange,
     hasResponse,
     loading,
+    status,
   } = useContext(FormOptionsContext);
 
   //destructuring fields
   const { topic, keyword } = formFields;
+  const clearResponse = status === "receive";
 
   return (
     <div>
@@ -39,12 +40,12 @@ const Form = ({}) => {
           <input
             className="input_text"
             type="text"
-            name="articleTitle"
+            name="topic"
             id=""
             placeholder="Enter topic"
             required
             value={topic}
-            onChange={handleTopicInput}
+            onChange={handleChange}
             onKeyDown={handleKeyDown}
             maxLength={200}
           />
@@ -60,7 +61,7 @@ const Form = ({}) => {
             placeholder="Add any related keyword"
             name="keyword"
             value={keyword}
-            onChange={handleKeywordInput}
+            onChange={handleChange}
           />
         </div>
         <Toggle />
@@ -94,7 +95,7 @@ const Form = ({}) => {
           <button className="button_cta">Generate</button>
         )}
       </form>
-      {hasResponse ? <AO_StartNew /> : ""}
+      {clearResponse && <AO_StartNew />}
     </div>
   );
 };

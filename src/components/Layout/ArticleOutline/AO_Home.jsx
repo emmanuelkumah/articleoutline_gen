@@ -4,7 +4,14 @@ import AO_WebLayout from "./AO_WebLayout";
 import { FormOptionsContext } from "../../../Context/Context";
 import toast, { Toaster } from "react-hot-toast";
 import { openai } from "../../../services/openai";
-import { collection, addDoc, getDocs } from "firebase/firestore";
+import {
+  collection,
+  addDoc,
+  onSnapshot,
+  query,
+  orderBy,
+  limit,
+} from "firebase/firestore";
 import { database } from "../../../services/firebase";
 
 const AO_Home = () => {
@@ -31,29 +38,53 @@ const AO_Home = () => {
 
   //write data to DB
   function addToDatabase(data) {
-    const outlineCollectionRef = collection(database, "article_outline");
-    addDoc(outlineCollectionRef, {
-      outline: data,
-    })
-      .then((response) => {
-        console.log(response.id);
+    try {
+      const outlineCollectionRef = collection(database, "article_outline");
+      addDoc(outlineCollectionRef, {
+        outline: data,
       })
-      .catch((error) => error.message);
+        .then((response) => {
+          console.log(response.id);
+        })
+        .catch((error) => error.message);
+    } catch (error) {
+      console.error("Error adding document", error);
+    }
   }
 
-  //read from database
+  //realtime subscription to DB
   const readData = () => {
-    const outlineCollectionRef = collection(database, "article_outline");
-    getDocs(outlineCollectionRef)
-      .then((response) => {
-        const result = response.docs.map((doc) => ({
-          data: doc.data(),
-          id: doc.id,
-        }));
-        setFetchedData(result);
+    try {
+      const outlineCollectionRef = collection(database, "article_outline");
+
+      const fetchedQuery = query(
+        outlineCollectionRef,
+        orderBy("outline", "desc"),
+        limit(1)
+      );
+
+      onSnapshot(fetchedQuery, (snapshot) => {
+        const fetched = snapshot?.docs.map((doc) => {
+          return { ...doc.data(), id: doc.id };
+        });
+        console.log(fetched);
+        setFetchedData(fetched);
         setStatus("received");
-      })
-      .catch((error) => console.log(error.message));
+      });
+    } catch (error) {
+      console.log("Error in retrieving document", error);
+    }
+    // const outlineCollectionRef = collection(database, "article_outline");
+    // getDocs(outlineCollectionRef)
+    //   .then((response) => {
+    //     const result = response.docs.map((doc) => ({
+    //       data: doc.data(),
+    //       id: doc.id,
+    //     }));
+    //     setFetchedData(result);
+    //     setStatus("received");
+    //   })
+    //   .catch((error) => console.log(error.message));
   };
 
   const verifyTopicInputLength = (topic) => {
@@ -67,10 +98,12 @@ const AO_Home = () => {
   const resetCharCount = () => {
     setCharCount(0);
   };
-
-  const handleTopicInput = (e) => {
-    const topic = e.target.value;
-    setFormFields({ ...formFields, topic });
+  //single event handler
+  const handleChange = (e) => {
+    setFormFields({
+      ...formFields,
+      [e.target.name]: e.target.value,
+    });
   };
 
   const handleKeyDown = (e) => {
@@ -82,11 +115,6 @@ const AO_Home = () => {
     } else {
       setCharCount((charCount) => charCount + 1);
     }
-  };
-
-  const handleKeywordInput = (e) => {
-    const keyword = e.target.value;
-    setFormFields({ ...formFields, keyword });
   };
 
   const handleLanguageSelection = (selectedLanguage) => {
@@ -209,15 +237,17 @@ const AO_Home = () => {
         setSwitchView,
         charCount,
         formFields,
-        handleTopicInput,
-        handleKeywordInput,
+
         handleKeyDown,
         handleFormSubmission,
         handleLanguageSelection,
         handleNumResultsInput,
         handleResetResponse,
         handleCopyToClip,
-
+        handleChange,
+        setShowResponse,
+        showResponse,
+        hasResponse,
         status,
         fetchedData,
       }}
