@@ -98,10 +98,12 @@ const AO_Home = () => {
   const resetCharCount = () => {
     setCharCount(0);
   };
-
-  const handleTopicInput = (e) => {
-    const topic = e.target.value;
-    setFormFields({ ...formFields, topic });
+  //single event handler
+  const handleChange = (e) => {
+    setFormFields({
+      ...formFields,
+      [e.target.name]: e.target.value,
+    });
   };
 
   const handleKeyDown = (e) => {
@@ -113,11 +115,6 @@ const AO_Home = () => {
     } else {
       setCharCount((charCount) => charCount + 1);
     }
-  };
-
-  const handleKeywordInput = (e) => {
-    const keyword = e.target.value;
-    setFormFields({ ...formFields, keyword });
   };
 
   const handleLanguageSelection = (selectedLanguage) => {
@@ -240,14 +237,14 @@ const AO_Home = () => {
         setSwitchView,
         charCount,
         formFields,
-        handleTopicInput,
-        handleKeywordInput,
+
         handleKeyDown,
         handleFormSubmission,
         handleLanguageSelection,
         handleNumResultsInput,
         handleResetResponse,
         handleCopyToClip,
+        handleChange,
         setShowResponse,
         showResponse,
         hasResponse,
