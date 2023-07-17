@@ -13,7 +13,6 @@ const AO_Container = () => {
 
   return (
     <>
-     
       {isTyping && (
         <AO_Placeholder
           heading="Let's start generating content"

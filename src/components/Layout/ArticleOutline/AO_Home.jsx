@@ -24,12 +24,11 @@ const AO_Home = () => {
   });
   const [showOptions, setShowOptions] = useState(false);
   const [switchView, setSwitchView] = useState(false);
-  const [charCount, setCharCount] = useState(0);
-  const [status, setStatus] = useState("typing");
+  const [status, setStatus] = useState("");
   const [hasResponse, setHasResponse] = useState(false);
   const [showResponse, setShowResponse] = useState("");
   const [copied, setCopied] = useState(false);
-  const [startNew, setStartNew] = useState(false);
+  const [loading, setLoading] = useState(false);
   const [fetchedData, setFetchedData] = useState([]);
 
   useEffect(() => {
@@ -38,8 +37,10 @@ const AO_Home = () => {
 
   //handle Submit
   const handleformSubmit = async (data) => {
+    //show loading
+    setStatus("sending");
     const openAiData = await fetchOpenAIData(data);
-
+    setLoading(true);
     //Send data to Database
     addToDatabase(openAiData);
   };
@@ -76,7 +77,6 @@ const AO_Home = () => {
         const fetched = snapshot?.docs.map((doc) => {
           return { ...doc.data(), id: doc.id };
         });
-        console.log(fetched);
         setFetchedData(fetched);
         setStatus("received");
       });
@@ -112,11 +112,13 @@ const AO_Home = () => {
         handleResetResponse,
         handleCopyToClip,
         setShowResponse,
+        setStatus,
         showResponse,
         hasResponse,
         status,
         fetchedData,
         handleformSubmit,
+        loading,
       }}
     >
       <div className="md:hidden">

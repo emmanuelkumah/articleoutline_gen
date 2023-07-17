@@ -17,33 +17,53 @@ export async function fetchOpenAIData(data) {
       keyword: Career development
       langauge: English
       tone: Professional
-      results: 2
       outline:
 
-      Tips on building a successful career
+      Blog Post Outline
 
-      1. Overview
-      2. Identify your goals
-      3. Keep track of progress
-      4. Make a plan
-      5. Stay positive
-      6. Reflect often
-      7. Network effectively
-      8. Know your strengths.
-      9. Practice minfulness
-      10. Conclusion
+      Title: Habits of Highly Successful People
 
-      Strategies  on building a successful career
+      Introduction:
+      - Overview of the topic
+      - Introduce the key takeaway: Habits successful people use to achieve greatness
+      - Describe the tone of the post: Professional
 
-      1. It all begins with your purpose
-      2. Have a clear vision
-      3. Set career goals
-      4. Develop the skills, attitude and competence
-      5. Find a mentor
-      6. Build professional networks
-      7. Read and study anything related to your career path
-      8. Sieze opportunities to expand yourself
-      9. Conclusion
+      Body:
+      - Categorize the habits into the following areas:
+        - Time management
+        - Goal setting
+        - Self-discipline
+        - Self-awareness
+        - Networking
+        - Positive attitude
+      - Describe each habit in detail
+      - Provide examples of successful people who have implemented these habits
+
+      Conclusion:
+        - Summarize the key takeaway
+        - Describe how implementing the habits of successful people can help individuals achieve their goals
+
+      Article Post Outline:
+
+      I. Introduction
+      
+      A. Definition of a successful career
+      B. Benefits of having a successful career
+      
+      II. Tips on How to Build a Successful Career
+      
+      A. Develop a Positive Mindset
+      B. Utilize Your Strengths
+      C. Network and Build Connections
+      D. Pursue Education and Training
+      E. Set Realistic Goals
+       
+      III. Conclusion
+      
+      A. Summary
+      B. Final Thoughts and Takeaways
+
+      
       ###
        caption: ${data.topic}
        language: ${data.language}
@@ -56,15 +76,10 @@ export async function fetchOpenAIData(data) {
       top_p: 1,
       frequency_penalty: 0,
       presence_penalty: 0,
-      n: 2,
+      n: 1,
     });
 
-    const openAiData = result.data.choices[0].text.trim();
-    // console.log(openAiData);
-
-    return openAiData;
-    //add data to Database
-    //addToDatabase(openAiData);
+    return result.data.choices[0].text.trim();
   } catch (error) {
     console.log(error);
   }
