@@ -14,9 +14,21 @@ const Form = ({}) => {
     reset,
   } = useForm();
 
+  const {
+    showOptions,
+
+    formFields,
+
+    loading,
+    status,
+    setSubmittedData,
+    handleformSubmit,
+    fetchOpenAIData,
+  } = useContext(FormOptionsContext);
+
   //submitform
   const onSubmit = (data) => {
-    console.log(data);
+    handleformSubmit(data);
     reset({
       topic: "",
       keyword: "",
@@ -24,18 +36,6 @@ const Form = ({}) => {
       language: "",
     });
   };
-
-  const {
-    showOptions,
-    charCount,
-    formFields,
-    handleKeyDown,
-    handleFormSubmission,
-    handleChange,
-    hasResponse,
-    loading,
-    status,
-  } = useContext(FormOptionsContext);
 
   //destructuring fields
   const { topic, keyword } = formFields;
@@ -51,16 +51,24 @@ const Form = ({}) => {
             className="input_text"
             name="topic"
             placeholder="Enter topic"
-            {...register("topic", { required: true }, { min: 10, max: 200 })}
+            {...register("topic", {
+              required: "Please enter topic",
+              minLength: {
+                value: 10,
+                message: "Topic should be more than 10 characters",
+              },
+            })}
           />
           {errors.topic && (
             <p className="text-sm text-red-600 py-3 bg-clip-padding">
-              Please enter the topic of the article
+              {errors.topic.message}
             </p>
           )}
         </div>
         <div>
-          <label htmlFor="articleKeyWord">Keyword </label>
+          <label htmlFor="articleKeyWord">
+            Keyword <span className="text-sm">(optional)</span>{" "}
+          </label>
           <input
             type="text"
             className="input_text"
@@ -75,18 +83,20 @@ const Form = ({}) => {
             <div>
               <p>Language</p>
               <select
+                value={"English"}
                 {...register("language")}
                 className="mt-5 w-[100%] bg-transparent border border-emerald-400 rounded-full"
               >
-                <option value="English">English </option>
-                <option value="French">French</option>
-                <option value="Dutch"> Dutch</option>
+                <option value="English">🇺🇸 English</option>
+                <option value="French">🇫🇷 French</option>
+                <option value="Dutch">🇳🇱 Dutch</option>
               </select>
             </div>
             <div>
               <p className="pt-4">Tone</p>
               <select
                 {...register("tone")}
+                value={"Professional"}
                 className="mt-5 w-[100%] bg-transparent border border-emerald-400 rounded-full"
               >
                 <option value="Professional">Professional</option>
