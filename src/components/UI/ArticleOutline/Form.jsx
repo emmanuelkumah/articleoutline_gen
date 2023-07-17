@@ -11,10 +11,19 @@ const Form = ({}) => {
     register,
     handleSubmit,
     formState: { errors },
+    reset,
   } = useForm();
 
   //submitform
-  const onSubmit = (data) => console.log(data);
+  const onSubmit = (data) => {
+    console.log(data);
+    reset({
+      topic: "",
+      keyword: "",
+      tone: "",
+      language: "",
+    });
+  };
 
   const {
     showOptions,
@@ -42,7 +51,7 @@ const Form = ({}) => {
             className="input_text"
             name="topic"
             placeholder="Enter topic"
-            {...register("topic", { required: true })}
+            {...register("topic", { required: true }, { min: 10, max: 200 })}
           />
           {errors.topic && (
             <p className="text-sm text-red-600 py-3 bg-clip-padding">
@@ -62,23 +71,30 @@ const Form = ({}) => {
         </div>
         <Toggle />
         {showOptions && (
-          <div>
-            <select
-              {...register("language")}
-              className="mt-5 w-[100%] bg-transparent border border-emerald-400 rounded-full"
-            >
-              <option value="English">English </option>
-              <option value="French">French</option>
-              <option value="Dutch"> Dutch</option>
-            </select>
-            <select
-              {...register("results")}
-              className="mt-5 w-[100%] bg-transparent border border-emerald-400 rounded-full"
-            >
-              <option value="1">1</option>
-              <option value="2">2</option>
-            </select>
-          </div>
+          <section>
+            <div>
+              <p>Language</p>
+              <select
+                {...register("language")}
+                className="mt-5 w-[100%] bg-transparent border border-emerald-400 rounded-full"
+              >
+                <option value="English">English </option>
+                <option value="French">French</option>
+                <option value="Dutch"> Dutch</option>
+              </select>
+            </div>
+            <div>
+              <p className="pt-4">Tone</p>
+              <select
+                {...register("tone")}
+                className="mt-5 w-[100%] bg-transparent border border-emerald-400 rounded-full"
+              >
+                <option value="Professional">Professional</option>
+                <option value="Informative">Informative</option>
+                <option value="Informative">Enthusiastic</option>
+              </select>
+            </div>
+          </section>
         )}
 
         <button className="button_cta">Generate</button>
