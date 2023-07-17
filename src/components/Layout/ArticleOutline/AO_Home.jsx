@@ -36,6 +36,9 @@ const AO_Home = () => {
     readData();
   }, []);
 
+  //handle Submit
+  const onSubmit = (data) => console.log(data);
+
   //write data to DB
   function addToDatabase(data) {
     try {
@@ -143,27 +146,27 @@ const AO_Home = () => {
   };
 
   //handle form submission
-  const handleFormSubmission = (e) => {
-    e.preventDefault();
-    verifyTopicInputLength(formFields.topic);
+  // const handleFormSubmission = (e) => {
+  //   e.preventDefault();
+  //   verifyTopicInputLength(formFields.topic);
 
-    const data = {
-      topic: formFields.topic,
-      keyword: formFields.keyword,
-      language: formFields.language,
-      number: formFields.numResults,
-    };
-    setStatus("sending");
-    //connect to openAI
-    fetchOpenAIData(data);
+  //   const data = {
+  //     topic: formFields.topic,
+  //     keyword: formFields.keyword,
+  //     language: formFields.language,
+  //     number: formFields.numResults,
+  //   };
+  //   setStatus("sending");
+  //   //connect to openAI
+  //   fetchOpenAIData(data);
 
-    //clear forms
-    setFormFields({
-      ...formFields,
-      topic: "",
-      keyword: "",
-    });
-  };
+  //   //clear forms
+  //   setFormFields({
+  //     ...formFields,
+  //     topic: "",
+  //     keyword: "",
+  //   });
+  // };
 
   //fetch response
   async function fetchOpenAIData(data) {
@@ -239,7 +242,6 @@ const AO_Home = () => {
         formFields,
 
         handleKeyDown,
-        handleFormSubmission,
         handleLanguageSelection,
         handleNumResultsInput,
         handleResetResponse,
@@ -250,6 +252,7 @@ const AO_Home = () => {
         hasResponse,
         status,
         fetchedData,
+        onSubmit,
       }}
     >
       <div className="md:hidden">
