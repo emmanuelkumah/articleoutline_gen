@@ -50,9 +50,10 @@ const AO_Home = () => {
       const outlineCollectionRef = collection(database, "article_outline");
       addDoc(outlineCollectionRef, {
         outline: data,
+        createdAt: new Date(),
       })
         .then((response) => {
-          console.log(response.id);
+          console.log(response.id.outline);
         })
         .catch((error) => error.message);
     } catch (error) {
@@ -67,7 +68,7 @@ const AO_Home = () => {
 
       const fetchedQuery = query(
         outlineCollectionRef,
-        orderBy("outline", "desc"),
+        orderBy("createdAt", "desc"),
         limit(1)
       );
 
@@ -82,17 +83,6 @@ const AO_Home = () => {
     } catch (error) {
       console.log("Error in retrieving document", error);
     }
-    // const outlineCollectionRef = collection(database, "article_outline");
-    // getDocs(outlineCollectionRef)
-    //   .then((response) => {
-    //     const result = response.docs.map((doc) => ({
-    //       data: doc.data(),
-    //       id: doc.id,
-    //     }));
-    //     setFetchedData(result);
-    //     setStatus("received");
-    //   })
-    //   .catch((error) => console.log(error.message));
   };
 
   //copy to clipboard
@@ -117,7 +107,6 @@ const AO_Home = () => {
         setShowOptions,
         switchView,
         setSwitchView,
-        charCount,
         formFields,
 
         handleResetResponse,

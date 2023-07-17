@@ -1,10 +1,7 @@
 import React, { useContext } from "react";
 import { useForm } from "react-hook-form";
 import { FormOptionsContext } from "../../../Context/Context";
-import SelectLang from "../SelectLang";
 import Toggle from "../Toggle";
-import SelectNumResults from "./SelectNumResults";
-import AO_StartNew from "./AO_StartNew";
 
 const Form = ({}) => {
   const {
@@ -14,17 +11,8 @@ const Form = ({}) => {
     reset,
   } = useForm();
 
-  const {
-    showOptions,
-
-    formFields,
-
-    loading,
-    status,
-    setSubmittedData,
-    handleformSubmit,
-    fetchOpenAIData,
-  } = useContext(FormOptionsContext);
+  const { formFields, showOptions, status, handleformSubmit } =
+    useContext(FormOptionsContext);
 
   //submitform
   const onSubmit = (data) => {
@@ -43,6 +31,8 @@ const Form = ({}) => {
 
   return (
     <div>
+      <h2 className="sub_heading_gradient">AI Article Outline</h2>
+
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className="py-4">
           <label htmlFor="articleTitle">Article Topic</label>
@@ -83,7 +73,6 @@ const Form = ({}) => {
             <div>
               <p>Language</p>
               <select
-                value={"English"}
                 {...register("language")}
                 className="mt-5 w-[100%] bg-transparent border border-emerald-400 rounded-full"
               >
@@ -96,7 +85,6 @@ const Form = ({}) => {
               <p className="pt-4">Tone</p>
               <select
                 {...register("tone")}
-                value={"Professional"}
                 className="mt-5 w-[100%] bg-transparent border border-emerald-400 rounded-full"
               >
                 <option value="Professional">Professional</option>
