@@ -16,20 +16,12 @@ import {
 import { database } from "../../../services/firebase";
 
 const AO_Home = () => {
-  const [formFields, setFormFields] = useState({
-    topic: "",
-    keyword: "",
-    language: "",
-    numResults: "",
-  });
   const [showOptions, setShowOptions] = useState(false);
   const [switchView, setSwitchView] = useState(false);
   const [status, setStatus] = useState("");
-  const [hasResponse, setHasResponse] = useState(false);
-  const [showResponse, setShowResponse] = useState("");
   const [copied, setCopied] = useState(false);
-  const [loading, setLoading] = useState(false);
   const [fetchedData, setFetchedData] = useState([]);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     readData();
@@ -37,7 +29,6 @@ const AO_Home = () => {
 
   //handle Submit
   const handleformSubmit = async (data) => {
-    //show loading
     setStatus("sending");
     const openAiData = await fetchOpenAIData(data);
     setLoading(true);
@@ -92,12 +83,7 @@ const AO_Home = () => {
   };
 
   const copyToClipboardMsg = () => {
-    toast.success("Content successfully copied to clipboard");
-  };
-  //handle reset of result
-
-  const handleResetResponse = () => {
-    setHasResponse(false);
+    toast.success("Content copied to clipboard");
   };
 
   return (
@@ -107,18 +93,11 @@ const AO_Home = () => {
         setShowOptions,
         switchView,
         setSwitchView,
-        formFields,
-
-        handleResetResponse,
         handleCopyToClip,
-        setShowResponse,
         setStatus,
-        showResponse,
-        hasResponse,
         status,
         fetchedData,
         handleformSubmit,
-        loading,
       }}
     >
       <div className="md:hidden">
@@ -131,9 +110,6 @@ const AO_Home = () => {
         />
       </div>
       <div className="hidden md:block">
-        {/* <div>
-          <Toaster position="top-center" />
-        </div> */}
         <AO_WebLayout />
       </div>
     </FormOptionsContext.Provider>
