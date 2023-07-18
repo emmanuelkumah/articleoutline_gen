@@ -1,6 +1,7 @@
 import { useState } from "react";
 import LeftSidebar from "../components/Sidebar/LeftSidebar";
-import { Outlet } from "react-router-dom";
+import AppsMain from "./AppsMain";
+//import { Outlet } from "react-router-dom";
 
 const Dashboard = () => {
   const [openSidebar, setOpenSidebar] = useState(true);
@@ -19,7 +20,8 @@ const Dashboard = () => {
             openSidebar ? "md:ml-[20%]" : "ml-[10%]"
           }`}
         >
-          <Outlet />
+          <AppsMain />
+          {/* <Outlet /> */}
         </div>
       </div>
     </section>

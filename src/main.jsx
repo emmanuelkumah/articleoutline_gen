@@ -9,6 +9,7 @@ import Dashboard from "./screens/Dashboard.jsx";
 import SignUp from "./screens/SignUp.jsx";
 import About from "./screens/About.jsx";
 import Products from "./screens/Products.jsx";
+import AppsMain from "./screens/AppsMain.jsx";
 
 const router = createBrowserRouter([
   {
