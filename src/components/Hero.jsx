@@ -97,7 +97,7 @@ const Hero = () => {
 
         <Button className="app_button">Start writing for free</Button>
         <div>
-          <p>No Sign-up required </p>
+          <p>No Credit card required </p>
         </div>
       </section>
     </div>
