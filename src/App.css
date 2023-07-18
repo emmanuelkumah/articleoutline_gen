@@ -87,12 +87,12 @@
   @apply flex justify-center text-2xl text-white;
 }
 .nav_items {
-  @apply block py-2 pl-3 pr-4 hover:bg-gradient-to-r from-emerald-500 to-purple-700 rounded-lg;
+  @apply block py-2 px-4 hover:bg-gradient-to-r from-emerald-500 to-purple-700 rounded-lg;
+}
+.active {
+  @apply block bg-purple-600 py-2 px-4 rounded-lg;
 }
 
-.orange_gradient {
-  @apply bg-gradient-to-r from-amber-500 via-orange-600 to-yellow-500 bg-clip-text text-transparent;
-}
 .typewriter_gradient {
   @apply bg-gradient-to-r from-emerald-500 via-sky-500 to-purple-500  bg-clip-text text-transparent text-3xl capitalize font-bold font-poppins pt-10 md:text-5xl;
 }
@@ -125,4 +125,7 @@
 }
 .button_cta {
   @apply bg-gradient-to-r from-emerald-500 to-blue-500 rounded-lg w-[100%] mt-6 hover:from-pink-500 hover:to-yellow-500 rounded-full mt-9 font-poppins font-thin text-xl text-white px-5 py-2;
+}
+.auth_items {
+  @apply bg-transparent py-2 pl-3 pr-4 hover:border border-emerald-400 rounded-full;
 }

@@ -3,29 +3,25 @@ import ReactDOM from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Root from "./routes/root.jsx";
 import ErrorPage from "./screens/error-page.jsx";
+import HomePage from "./screens/HomePage.jsx";
+import SignIn from "./screens/SignIn.jsx";
 import Dashboard from "./screens/Dashboard.jsx";
-
-import AppsMains from "./screens/AppsMain.jsx";
-import ArticleOutline from "./screens/ArticleOutline.jsx";
+import SignUp from "./screens/SignUp.jsx";
+import About from "./screens/About.jsx";
+import Products from "./screens/Products.jsx";
 
 const router = createBrowserRouter([
   {
-    path: "/articleoutline_gen",
+    path: "/articleoutline_gen/",
     element: <Root />,
     errorElement: <ErrorPage />,
-  },
-  {
-    path: "/articleoutline_gen/dashboard",
-    element: <Dashboard />,
     children: [
-      {
-        path: "/articleoutline_gen/dashboard",
-        element: <AppsMains />,
-      },
-      {
-        path: "/articleoutline_gen/dashboard/outline",
-        element: <ArticleOutline/>,
-      },
+      { path: "/articleoutline_gen/", element: <HomePage /> },
+      { path: "about", element: <About /> },
+      { path: "products", element: <Products /> },
+      { path: "signin", element: <SignIn /> },
+      { path: "signup", element: <SignUp /> },
+      { path: "dashboard", element: <Dashboard /> },
     ],
   },
 ]);

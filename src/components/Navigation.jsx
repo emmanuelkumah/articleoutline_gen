@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { AiOutlineMenu, AiFillCloseSquare } from "react-icons/ai";
+import { NavLink } from "react-router-dom";
 
 import logo from "../assets/images/ecrire.png";
 
@@ -29,32 +30,58 @@ const Navigation = () => {
           >
             <ul className="flex flex-col font-medium p-4 md:p-0 mt-2  md:flex-row md:space-x-8 md:mt-0 md:border-0">
               <li>
-                <a
-                  href="#"
-                  className="block py-2 pl-3 pr-4 bg-emerald-500 rounded-lg md:bg-transparent"
+                <NavLink
+                  to=""
+                  className={({ isActive }) =>
+                    isActive
+                      ? "active"
+                      : "block py-2 pl-3 pr-4 bg-emerald-500 rounded-lg md:bg-transparent"
+                  }
+                  end
                 >
                   Home
-                </a>
+                </NavLink>
               </li>
               <li>
-                <a href="#" className="nav_items">
+                <NavLink
+                  to="about"
+                  className={({ isActive }) =>
+                    isActive ? "active" : "nav_items"
+                  }
+                >
                   About{" "}
-                </a>
+                </NavLink>
               </li>
               <li>
-                <a href="#" className="nav_items">
+                <NavLink
+                  to="products"
+                  className={({ isActive }) =>
+                    isActive ? "active" : "nav_items"
+                  }
+                >
                   Products
-                </a>
+                </NavLink>
               </li>
+
               <li>
-                <a href="#" className="nav_items">
-                  Features
-                </a>
-              </li>
-              <li>
-                <a href="#" className="nav_items">
-                  Resources
-                </a>
+                <div className="flex gap-8">
+                  <NavLink
+                    to="signin"
+                    className={({ isActive }) =>
+                      isActive ? "active" : "auth_items"
+                    }
+                  >
+                    Sign In
+                  </NavLink>
+                  <NavLink
+                    to="signup"
+                    className={({ isActive }) =>
+                      isActive ? "active" : "auth_items"
+                    }
+                  >
+                    <button>Get Started</button>
+                  </NavLink>
+                </div>
               </li>
             </ul>
           </div>

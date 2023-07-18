@@ -1,11 +1,13 @@
 import React from "react";
-import Landing from "../screens/Landing";
+import { Outlet } from "react-router-dom";
+import Navigation from "../components/Navigation";
 
 const Root = () => {
   return (
-    <div>
-      <Landing />
-    </div>
+    <>
+      <Navigation />
+      <Outlet />
+    </>
   );
 };
 
