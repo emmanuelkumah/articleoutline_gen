@@ -1,9 +1,8 @@
 import { useState } from "react";
 import LeftSidebar from "../components/Sidebar/LeftSidebar";
-import AppsMain from "./AppsMain";
-//import { Outlet } from "react-router-dom";
+import { Outlet } from "react-router-dom";
 
-const Dashboard = () => {
+const DashboardRootLayout = () => {
   const [openSidebar, setOpenSidebar] = useState(true);
   return (
     <section className="gap-6">
@@ -20,12 +19,11 @@ const Dashboard = () => {
             openSidebar ? "md:ml-[20%]" : "ml-[10%]"
           }`}
         >
-          <AppsMain />
-          {/* <Outlet /> */}
+          <Outlet />
         </div>
       </div>
     </section>
   );
 };
 
-export default Dashboard;
+export default DashboardRootLayout;
