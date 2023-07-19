@@ -10,7 +10,7 @@ import SignUp from "./screens/SignUp.jsx";
 import About from "./screens/About.jsx";
 import Products from "./screens/Products.jsx";
 import AppsMain from "./screens/AppsMain.jsx";
-import Outliner from "./screens/Outliner.jsx";
+import ArticleOutline from "./screens/ArticleOutline.jsx";
 
 const router = createBrowserRouter([
   {
@@ -29,10 +29,10 @@ const router = createBrowserRouter([
     path: "/articleoutline_gen/dashboard",
     element: <DashboardRootLayout />,
     children: [
-      { path: "", element: <AppsMain /> },
+      { index: true, element: <AppsMain /> },
       {
         path: "outline",
-        element: <Outliner />,
+        element: <ArticleOutline />,
       },
       {
         path: "grammar",

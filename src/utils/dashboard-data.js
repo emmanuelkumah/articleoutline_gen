@@ -22,7 +22,7 @@ export const app_content = [
     content:
       "Generate outline of article in seconds, using our powerful AI outline generator",
     icon: checklist,
-    url: "../outline",
+    url: "outline",
   },
   {
     id: 2,
@@ -30,7 +30,7 @@ export const app_content = [
     content:
       "Perfect your English by reviewing your writing for grammar,spelling, and puctuation errors",
     icon: pen,
-    url: "/grammar",
+    url: "grammar",
   },
   {
     id: 3,
@@ -38,7 +38,7 @@ export const app_content = [
     content:
       "Breakthrough writer's block, come up with awesome ideas for your articles",
     icon: notebook,
-    url: "/ideas",
+    url: "ideas",
   },
   {
     id: 4,
@@ -46,7 +46,7 @@ export const app_content = [
     content:
       "Reword sentences, transform the structure of content whiles keeping the context",
     icon: feather,
-    url: "/rewrite",
+    url: "rewrite",
   },
   {
     id: 5,
@@ -54,7 +54,7 @@ export const app_content = [
     content:
       "Post everyday, attract unique views.Generate virals post for your social media handles",
     icon: book,
-    url: "/socials",
+    url: "socials",
   },
   {
     id: 6,
