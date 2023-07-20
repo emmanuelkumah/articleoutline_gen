@@ -99,6 +99,9 @@
 .heading_gradient {
   @apply bg-gradient-to-r from-emerald-500 via-sky-500 to-purple-500  bg-clip-text text-transparent text-5xl font-extrabold font-poppins pt-10;
 }
+.formHeading_gradient {
+  @apply bg-gradient-to-r from-emerald-500 via-sky-500 to-purple-500  bg-clip-text text-transparent text-xl font-extrabold font-poppins pt-10;
+}
 .sub_heading_gradient {
   @apply bg-gradient-to-r from-emerald-500 via-sky-500 to-purple-500  bg-clip-text text-transparent text-3xl font-thin font-poppins pt-[7%] pb-5;
 }
@@ -118,7 +121,7 @@
   @apply bg-gradient-to-r from-orange-600 via-amber-300 to-red-600 bg-clip-text text-transparent text-3xl text-center capitalize mb-7 font-thin font-poppins;
 }
 .input_text {
-  @apply w-full bg-transparent border border-emerald-400 rounded-full p-3 focus:outline-none mt-3;
+  @apply w-full bg-transparent border border-emerald-400 rounded-full p-3 text-sm focus:outline-none mt-3;
 }
 .app_button {
   @apply bg-gradient-to-r from-emerald-500 to-purple-700 rounded-full hover:from-purple-500 hover:to-blue-500  my-9 font-poppins font-bold text-3xl text-white px-5 py-2 animate-bounce;

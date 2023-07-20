@@ -22,7 +22,6 @@ const router = createBrowserRouter([
       { path: "about", element: <About /> },
       { path: "products", element: <Products /> },
       { path: "signin", element: <SignIn /> },
-      { path: "signup", element: <SignUp /> },
     ],
   },
   {
@@ -44,6 +43,11 @@ const router = createBrowserRouter([
       },
     ],
   },
+  {
+    path: "/articleoutline_gen/signup",
+    element: <SignUp />,
+  },
+ 
 ]);
 
 ReactDOM.createRoot(document.getElementById("root")).render(

@@ -1,11 +1,11 @@
 import React, { useContext } from "react";
 import { ReactComponent as Loader } from "../../../assets/loader.svg";
-import { FormOptionsContext } from "../../../Context/Context";
+import { ArticleOutlineCtx } from "../../../Context/articleOutlineCtx";
 import AO_Response from "./AO_Response";
 import AO_Placeholder from "./AO_Placeholder";
 
 const AO_Container = () => {
-  const { status } = useContext(FormOptionsContext);
+  const { status } = useContext(ArticleOutlineCtx);
 
   const isSending = status === "sending";
   const hasData = status === "received";

@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import { useForm } from "react-hook-form";
-import { FormOptionsContext } from "../../../Context/Context";
+import { ArticleOutlineCtx } from "../../../Context/articleOutlineCtx";
 import Toggle from "../Toggle";
 
 const Form = ({}) => {
@@ -11,8 +11,8 @@ const Form = ({}) => {
     reset,
   } = useForm();
 
-  const { formFields, showOptions, setStatus, handleformSubmit, loading } =
-    useContext(FormOptionsContext);
+  const { showOptions, setStatus, handleformSubmit } =
+    useContext(ArticleOutlineCtx);
 
   //submitform
   const onSubmit = (data) => {
@@ -25,10 +25,6 @@ const Form = ({}) => {
       language: "",
     });
   };
-
-  //destructuring fields
-  // const { topic, keyword } = formFields;
-  // const clearResponse = status === "receive";
 
   return (
     <div>

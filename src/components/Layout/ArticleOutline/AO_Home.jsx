@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import AO_MobileLayout from "./AO_MobileLayout";
 import AO_WebLayout from "./AO_WebLayout";
-import { FormOptionsContext } from "../../../Context/Context";
+import { ArticleOutlineCtx } from "../../../Context/articleOutlineCtx";
 import toast, { Toaster } from "react-hot-toast";
 //import { openai } from "../../../services/openai";
 import { fetchOpenAIData } from "../../../services/openai";
@@ -87,7 +87,7 @@ const AO_Home = () => {
   };
 
   return (
-    <FormOptionsContext.Provider
+    <ArticleOutlineCtx.Provider
       value={{
         showOptions,
         setShowOptions,
@@ -112,7 +112,7 @@ const AO_Home = () => {
       <div className="hidden md:block">
         <AO_WebLayout />
       </div>
-    </FormOptionsContext.Provider>
+    </ArticleOutlineCtx.Provider>
   );
 };
 
