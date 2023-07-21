@@ -1,8 +1,8 @@
 import { useContext } from "react";
-import { FormOptionsContext } from "../../../Context/Context";
+import { ArticleOutlineCtx } from "../../../Context/articleOutlineCtx";
 
 const SwitchViews = () => {
-  const { switchView, setSwitchView } = useContext(FormOptionsContext);
+  const { switchView, setSwitchView } = useContext(ArticleOutlineCtx);
 
   const handleSwitchViews = () => {
     setSwitchView(!switchView);

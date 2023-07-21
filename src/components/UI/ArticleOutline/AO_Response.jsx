@@ -2,7 +2,6 @@ import React, { useContext } from "react";
 import { CopyToClipboard } from "react-copy-to-clipboard";
 import { AiOutlineCopy } from "react-icons/ai";
 import { ArticleOutlineCtx } from "../../../Context/articleOutlineCtx";
-FormOptionsContext;
 
 const AO_Response = () => {
   const { fetchedData, handleCopyToClip } = useContext(ArticleOutlineCtx);

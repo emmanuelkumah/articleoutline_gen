@@ -1,8 +1,8 @@
 import React, { useContext } from "react";
-import { FormOptionsContext } from "../../Context/Context";
+import { ArticleOutlineCtx } from "../../Context/articleOutlineCtx";
 
 const Toggle = () => {
-  const { showOptions, setShowOptions } = useContext(FormOptionsContext);
+  const { showOptions, setShowOptions } = useContext(ArticleOutlineCtx);
 
   const handleChange = () => {
     setShowOptions(!showOptions);
