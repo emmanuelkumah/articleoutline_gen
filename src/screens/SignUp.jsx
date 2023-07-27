@@ -7,7 +7,13 @@ import * as yup from "yup";
 //form validation
 const validationSchema = yup.object({
   fullName: yup.string().required("Please enter your fullname"),
-  email: yup.string().required("Please enter your email"),
+  email: yup
+    .string()
+    .required("Please enter your email")
+    .matches(
+      /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/,
+      "Please enter a valid email"
+    ),
   password: yup
     .string()
     .required("Password is required")
@@ -37,6 +43,7 @@ const SignUp = () => {
 
   const onSignUpSubmit = (data) => {
     console.log(data);
+    
   };
 
   const onSignInSubmit = (data) => {
