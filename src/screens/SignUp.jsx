@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { FcGoogle } from "react-icons/fc";
+import { AiOutlineEyeInvisible, AiOutlineEye } from "react-icons/ai";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 
@@ -37,13 +38,20 @@ const SignUp = () => {
   } = useForm({ resolver: yupResolver(validationSchema) });
 
   const [toggleSignUp, setToggleSignUp] = useState(true);
+  const [passwordVisible, setPasswordVisible] = useState(false);
+
   const handleToggle = () => {
     setToggleSignUp(!toggleSignUp);
   };
 
   const onSignUpSubmit = (data) => {
     console.log(data);
-    
+    reset({
+      fullName: "",
+      email: "",
+      password: "",
+      confirmPassword: "",
+    });
   };
 
   const onSignInSubmit = (data) => {
@@ -86,11 +94,14 @@ const SignUp = () => {
             Password
           </label>
           <input
-            type="password"
+            type={passwordVisible ? "text" : "password"}
             name="password"
             {...register("password")}
             className="input_text"
           />
+          <span onClick={() => setPasswordVisible(!passwordVisible)}>
+            {passwordVisible ? <AiOutlineEye /> : <AiOutlineEyeInvisible />}
+          </span>
           <small className=" text-red-600 py-3">
             {errors.password?.message}
           </small>
@@ -100,11 +111,14 @@ const SignUp = () => {
             Confirm Password
           </label>
           <input
-            type="password"
+            type={passwordVisible ? "text" : "password"}
             name="confirmPassword"
             {...register("confirmPassword")}
             className="input_text"
           />
+          <span onClick={() => setPasswordVisible(!passwordVisible)}>
+            {passwordVisible ? <AiOutlineEye /> : <AiOutlineEyeInvisible />}
+          </span>
           <small className=" text-red-600 py-3">
             {errors.confirmPassword?.message}
           </small>
