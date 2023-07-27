@@ -1,13 +1,18 @@
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { FcGoogle } from "react-icons/fc";
-import { AiOutlineEyeInvisible, AiOutlineEye } from "react-icons/ai";
+import {
+  AiOutlineEyeInvisible,
+  AiOutlineEye,
+  AiOutlineUser,
+} from "react-icons/ai";
+import { MdAlternateEmail } from "react-icons/md";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 
 //form validation
 const validationSchema = yup.object({
-  fullName: yup.string().required("Please enter your fullname"),
+  displayName: yup.string().required("Please enter your display name"),
   email: yup
     .string()
     .required("Please enter your email")
@@ -39,6 +44,7 @@ const SignUp = () => {
 
   const [toggleSignUp, setToggleSignUp] = useState(true);
   const [passwordVisible, setPasswordVisible] = useState(false);
+  const [confirmPasswordVisibile, setConfirmPasswordVisible] = useState(false);
 
   const handleToggle = () => {
     setToggleSignUp(!toggleSignUp);
@@ -47,7 +53,7 @@ const SignUp = () => {
   const onSignUpSubmit = (data) => {
     console.log(data);
     reset({
-      fullName: "",
+      displayName: "",
       email: "",
       password: "",
       confirmPassword: "",
@@ -70,61 +76,86 @@ const SignUp = () => {
       </p>
       <form onSubmit={handleSubmit(onSignUpSubmit)}>
         <div className="flex flex-col">
-          <label htmlFor="name" className="py-[3%]">
-            Full Name
+          Display Name
+          <label htmlFor="displayName" className="flex relative">
+            <input
+              {...register("displayName")}
+              name="displayName"
+              placeholder="Enter display name"
+              className="input_text"
+            />
+            <span className="absolute top-6 right-5">
+              <AiOutlineUser />
+            </span>
           </label>
-          <input
-            {...register("fullName")}
-            name="fullName"
-            className="input_text"
-          />
           <small className=" text-red-600 py-3">
-            {errors.fullName?.message}
+            {errors.displayName?.message}
           </small>
         </div>
         <div className="flex flex-col">
-          <label htmlFor="email" className="py-[3%]">
-            Email
+          Email
+          <label htmlFor="email" className="flex relative">
+            <input
+              {...register("email")}
+              name="email"
+              className="input_text"
+              placeholder="Enter email address"
+            />
+            <span className="absolute top-6 right-5">
+              <MdAlternateEmail />
+            </span>
           </label>
-          <input {...register("email")} name="email" className="input_text" />
           <small className=" text-red-600 py-3">{errors.email?.message}</small>
         </div>
         <div className="flex flex-col">
-          <label htmlFor="password" className="py-[3%]">
-            Password
+          Create a password
+          <label htmlFor="password" className="flex relative">
+            <input
+              type={passwordVisible ? "text" : "password"}
+              name="password"
+              {...register("password")}
+              className="input_text"
+              placeholder="Enter password"
+            />
+            <span
+              className="absolute top-6 right-5"
+              onClick={() => setPasswordVisible(!passwordVisible)}
+            >
+              {passwordVisible ? <AiOutlineEye /> : <AiOutlineEyeInvisible />}
+            </span>
           </label>
-          <input
-            type={passwordVisible ? "text" : "password"}
-            name="password"
-            {...register("password")}
-            className="input_text"
-          />
-          <span onClick={() => setPasswordVisible(!passwordVisible)}>
-            {passwordVisible ? <AiOutlineEye /> : <AiOutlineEyeInvisible />}
-          </span>
           <small className=" text-red-600 py-3">
             {errors.password?.message}
           </small>
         </div>
         <div className="flex flex-col">
-          <label htmlFor="confirmPassword" className="py-[3%]">
-            Confirm Password
+          Confirm password
+          <label htmlFor="confirmPassword" className="flex relative">
+            <input
+              type={confirmPasswordVisibile ? "text" : "password"}
+              name="confirmPassword"
+              {...register("confirmPassword")}
+              className="input_text"
+              placeholder="Enter password again"
+            />
+            <span
+              className="absolute top-6 right-5"
+              onClick={() =>
+                setConfirmPasswordVisible(!confirmPasswordVisibile)
+              }
+            >
+              {confirmPasswordVisibile ? (
+                <AiOutlineEye />
+              ) : (
+                <AiOutlineEyeInvisible />
+              )}
+            </span>
           </label>
-          <input
-            type={passwordVisible ? "text" : "password"}
-            name="confirmPassword"
-            {...register("confirmPassword")}
-            className="input_text"
-          />
-          <span onClick={() => setPasswordVisible(!passwordVisible)}>
-            {passwordVisible ? <AiOutlineEye /> : <AiOutlineEyeInvisible />}
-          </span>
           <small className=" text-red-600 py-3">
             {errors.confirmPassword?.message}
           </small>
         </div>
-        {/* <input type="submit" value="Create Account" className="button_cta" /> */}
-        <button>Register</button>
+        <button className="button_cta">Create your account</button>
       </form>
       <div className="grid place-items-center">
         <button className="p-4 mx-auto mt-8 border border-green-200 rounded-full">
