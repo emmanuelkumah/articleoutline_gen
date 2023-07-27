@@ -1,6 +1,26 @@
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { FcGoogle } from "react-icons/fc";
+import { yupResolver } from "@hookform/resolvers/yup";
+import * as yup from "yup";
+
+//form validation
+const validationSchema = yup.object({
+  fullName: yup.string().required("Please enter your fullname"),
+  email: yup.string().required("Please enter your email"),
+  password: yup
+    .string()
+    .required("Password is required")
+    .min(5, "Password must be at least 5 characters")
+    .matches(
+      /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{5,}$/,
+      "Password should have at least  1 special char, 1 number, 1 letter."
+    ),
+  confirmPassword: yup
+    .string()
+    .required("Confirm password is required")
+    .oneOf([yup.ref("password")], "Password must match"),
+});
 
 const SignUp = () => {
   const {
@@ -8,19 +28,15 @@ const SignUp = () => {
     handleSubmit,
     formState: { errors },
     reset,
-  } = useForm();
+  } = useForm({ resolver: yupResolver(validationSchema) });
 
   const [toggleSignUp, setToggleSignUp] = useState(true);
   const handleToggle = () => {
     setToggleSignUp(!toggleSignUp);
   };
+
   const onSignUpSubmit = (data) => {
     console.log(data);
-    reset({
-      name: "",
-      email: "",
-      password: "",
-    });
   };
 
   const onSignInSubmit = (data) => {
@@ -43,41 +59,51 @@ const SignUp = () => {
             Full Name
           </label>
           <input
-            {...register("name", {
-              required: "Please enter your name",
-              minLength: {
-                value: 5,
-                message: "Name should be more than 5 characters",
-              },
-            })}
-            name="name"
+            {...register("fullName")}
+            name="fullName"
             className="input_text"
           />
-          {errors.name && (
-            <p className="text-sm text-red-600 py-3 bg-clip-padding">
-              {errors.name.message}
-            </p>
-          )}
+          <small className=" text-red-600 py-3">
+            {errors.fullName?.message}
+          </small>
         </div>
         <div className="flex flex-col">
           <label htmlFor="email" className="py-[3%]">
             Email
           </label>
-          <input
-            {...register("email", {
-              required: "Email is required",
-            })}
-            name="email"
-            className="input_text"
-          />
+          <input {...register("email")} name="email" className="input_text" />
+          <small className=" text-red-600 py-3">{errors.email?.message}</small>
         </div>
         <div className="flex flex-col">
           <label htmlFor="password" className="py-[3%]">
             Password
           </label>
-          <input {...register("password")} className="input_text" />
+          <input
+            type="password"
+            name="password"
+            {...register("password")}
+            className="input_text"
+          />
+          <small className=" text-red-600 py-3">
+            {errors.password?.message}
+          </small>
         </div>
-        <input type="submit" value="Create Account" className="button_cta" />
+        <div className="flex flex-col">
+          <label htmlFor="confirmPassword" className="py-[3%]">
+            Confirm Password
+          </label>
+          <input
+            type="password"
+            name="confirmPassword"
+            {...register("confirmPassword")}
+            className="input_text"
+          />
+          <small className=" text-red-600 py-3">
+            {errors.confirmPassword?.message}
+          </small>
+        </div>
+        {/* <input type="submit" value="Create Account" className="button_cta" /> */}
+        <button>Register</button>
       </form>
       <div className="grid place-items-center">
         <button className="p-4 mx-auto mt-8 border border-green-200 rounded-full">
