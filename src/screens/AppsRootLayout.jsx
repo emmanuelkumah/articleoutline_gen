@@ -2,7 +2,7 @@ import { useState } from "react";
 import LeftSidebar from "../components/Sidebar/LeftSidebar";
 import { Outlet } from "react-router-dom";
 
-const DashboardRootLayout = () => {
+const AppsRootLayout = () => {
   const [openSidebar, setOpenSidebar] = useState(true);
   return (
     <section className="gap-6">
@@ -26,4 +26,4 @@ const DashboardRootLayout = () => {
   );
 };
 
-export default DashboardRootLayout;
+export default AppsRootLayout;

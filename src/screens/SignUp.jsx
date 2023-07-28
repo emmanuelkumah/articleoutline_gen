@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
+import { useNavigate } from "react-router-dom";
 import { FcGoogle } from "react-icons/fc";
 import {
   AiOutlineEyeInvisible,
@@ -9,6 +10,8 @@ import {
 import { MdAlternateEmail } from "react-icons/md";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
+import { auth } from "../services/firebase";
+import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 
 //form validation
 const validationSchema = yup.object({
@@ -46,19 +49,37 @@ const SignUp = () => {
   const [passwordVisible, setPasswordVisible] = useState(false);
   const [confirmPasswordVisibile, setConfirmPasswordVisible] = useState(false);
 
+  const navigate = useNavigate();
+
   const handleToggle = () => {
     setToggleSignUp(!toggleSignUp);
   };
 
-  const onSignUpSubmit = (data) => {
-    console.log(data);
-    reset({
-      displayName: "",
-      email: "",
-      password: "",
-      confirmPassword: "",
-    });
-  };
+  //handle form submission
+  async function onSignUpSubmit(data) {
+    const { email, password } = data;
+    try {
+      const auth = getAuth();
+      const userCredentials = await createUserWithEmailAndPassword(
+        auth,
+        email,
+        password
+      );
+      const user = userCredentials.user;
+      console.log(user);
+      reset({
+        displayName: "",
+        email: "",
+        password: "",
+        confirmPassword: "",
+      });
+      navigate("/articleoutline_gen/app");
+    } catch (error) {
+      const errorCode = error.code;
+      const errorMessage = error.message;
+      console.log(errorMessage);
+    }
+  }
 
   const onSignInSubmit = (data) => {
     console.log(data);

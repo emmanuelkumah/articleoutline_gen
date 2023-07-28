@@ -5,7 +5,7 @@ import Root from "./routes/root.jsx";
 import ErrorPage from "./screens/error-page.jsx";
 import HomePage from "./screens/HomePage.jsx";
 import SignIn from "./screens/SignIn.jsx";
-import DashboardRootLayout from "./screens/DashboardRootLayout.jsx";
+import DashboardRootLayout from "./screens/AppsRootLayout.jsx";
 import SignUp from "./screens/SignUp.jsx";
 import About from "./screens/About.jsx";
 import Products from "./screens/Products.jsx";
@@ -25,7 +25,7 @@ const router = createBrowserRouter([
     ],
   },
   {
-    path: "/articleoutline_gen/dashboard",
+    path: "/articleoutline_gen/app",
     element: <DashboardRootLayout />,
     children: [
       { index: true, element: <AppsMain /> },
@@ -47,7 +47,6 @@ const router = createBrowserRouter([
     path: "/articleoutline_gen/signup",
     element: <SignUp />,
   },
- 
 ]);
 
 ReactDOM.createRoot(document.getElementById("root")).render(
