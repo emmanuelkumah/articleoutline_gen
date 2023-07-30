@@ -4,8 +4,6 @@ import notebook from "../assets/images/notebook.gif";
 import feather from "../assets/images/feather-pen.gif";
 import document from "../assets/images/document.gif";
 import book from "../assets/images/book.gif";
-import chat from "../assets/images/chat.jpg";
-import copy from "../assets/images/copy.jpg";
 
 import { MdOutlineDashboard } from "react-icons/md";
 import { RiSettings4Line } from "react-icons/ri";
@@ -26,17 +24,16 @@ export const app_content = [
   },
   {
     id: 2,
-    heading: "Grammar Check",
+    heading: "Transcribe",
     content:
-      "Perfect your English by reviewing your writing for grammar,spelling, and puctuation errors",
+      "Transcribe audio to text, check the text for grammar,spelling, and puctuation errors, and rephrase the text",
     icon: pen,
     url: "grammar",
   },
   {
     id: 3,
-    heading: "Aricle Ideas",
-    content:
-      "Breakthrough writer's block, come up with awesome ideas for your articles",
+    heading: "Aricle Summarize",
+    content: "Summarize article from any url ",
     icon: notebook,
     url: "ideas",
   },

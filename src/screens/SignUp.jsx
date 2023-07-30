@@ -57,7 +57,7 @@ const SignUp = () => {
 
   //handle form submission
   async function onSignUpSubmit(data) {
-    const { email, password } = data;
+    const { email, password, displayName } = data;
     try {
       const auth = getAuth();
       const userCredentials = await createUserWithEmailAndPassword(
@@ -65,7 +65,9 @@ const SignUp = () => {
         email,
         password
       );
-      const user = userCredentials.user;
+      const user = userCredentials.user.displayName({
+        displayName: displayName,
+      });
       console.log(user);
       reset({
         displayName: "",
